@@ -1,0 +1,29 @@
+{
+  "name": "the-nut-barn",
+  "version": "1.0.0",
+  "description": "The Nut Barn - Fresh Roasted Cinnamon Nuts E-commerce Site",
+  "main": "src/index.html",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "npm run build:css && npm run build:js && npm run copy:html",
+    "build:css": "mkdir -p dist && cp src/css/styles.css dist/",
+    "build:js": "mkdir -p dist && cp src/js/main.js dist/",
+    "copy:html": "cp src/index.html dist/",
+    "deploy": "netlify deploy --prod"
+  },
+  "dependencies": {
+    "stripe": "^14.0.0",
+    "@supabase/supabase-js": "^2.38.0"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.0.0"
+  },
+  "keywords": [
+    "ecommerce",
+    "nuts",
+    "small-business",
+    "netlify"
+  ],
+  "author": "The Nut Barn LLC",
+  "license": "MIT"
+}
