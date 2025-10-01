@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Nut Barn - Fresh Roasted Nuts & Gift Baskets</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/scripts.js" defer></script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">🥜 The Nut Barn</div>
+                <div class="contact-info">
+                    <div>📧 thenutbarnllc@gmail.com</div>
+                    <div>📞 (517) 410-9029</div>
+                    <div>📍 Dimondale, Michigan</div>
+                </div>
+                <div class="cart-icon" onclick="toggleCart()">
+                    🛒 Cart (<span id="cart-count">0</span>)
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#story">Our Story</a></li>
+                <li><a href="#schedule">Find Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Fresh Roasted Cinnamon Nuts</h1>
+            <p>Vegan & Gluten-Free • Made with Only 5 Simple Ingredients</p>
+            <a href="#products" class="cta-button">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">Our Products</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">🥜</div>
+                    <h3 class="product-title">6 oz Cinnamon Roasted Nuts</h3>
+                    <div class="product-price">$10.00</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="changeQuantity('nuts-6oz', -1)">-</button>
+                        <input type="number" class="quantity-input" id="nuts-6oz-qty" value="1" min="1">
+                        <button class="quantity-btn" onclick="changeQuantity('nuts-6oz', 1)">+</button>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('nuts-6oz', '6 oz Cinnamon Roasted Nuts', 10.00)">Add
+                        to Cart</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">🥜</div>
+                    <h3 class="product-title">8 oz Cinnamon Roasted Nuts</h3>
+                    <div class="product-price">$15.00</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="changeQuantity('nuts-8oz', -1)">-</button>
+                        <input type="number" class="quantity-input" id="nuts-8oz-qty" value="1" min="1">
+                        <button class="quantity-btn" onclick="changeQuantity('nuts-8oz', 1)">+</button>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('nuts-8oz', '8 oz Cinnamon Roasted Nuts', 15.00)">Add
+                        to Cart</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">🥜</div>
+                    <h3 class="product-title">15 oz Cinnamon Roasted Nuts</h3>
+                    <div class="product-price">$23.00</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="changeQuantity('nuts-15oz', -1)">-</button>
+                        <input type="number" class="quantity-input" id="nuts-15oz-qty" value="1" min="1">
+                        <button class="quantity-btn" onclick="changeQuantity('nuts-15oz', 1)">+</button>
+                    </div>
+                    <button class="add-to-cart"
+                        onclick="addToCart('nuts-15oz', '15 oz Cinnamon Roasted Nuts', 23.00)">Add to Cart</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">🎁</div>
+                    <h3 class="product-title">Holiday Gift Basket</h3>
+                    <div class="product-price">Starting at $40.00</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="changeQuantity('gift-basket', -1)">-</button>
+                        <input type="number" class="quantity-input" id="gift-basket-qty" value="1" min="1">
+                        <button class="quantity-btn" onclick="changeQuantity('gift-basket', 1)">+</button>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('gift-basket', 'Holiday Gift Basket', 40.00)">Add to
+                        Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story" id="story">
+        <div class="container">
+            <div class="story-content">
+                <h2>Our Story</h2>
+                <p>Our story began in August 2023 when my husband and I decided to embark on a new adventure that we
+                    could eventually use to supplement our retirement income and teach our grandchildren the valuable
+                    lessons that come with owning your own business.</p>
+
+                <p>I remember these little nut stands being at the mall growing up in the 80s and you could just follow
+                    that smell from a hundred yards away, but much like the nostalgia of the drive in theatre and big
+                    name bands like REO Speedwagon at the County Fair, these little stands fell away and became harder
+                    to find outside of the annual Renaissance Fair in Michigan.</p>
+
+                <p>It took a little convincing for my husband to take this leap of faith with me but I knew he would say
+                    yes to buying this little nut stand because he's never told me "No" to anything in 26 years of
+                    marriage....so we jumped right in with both feet!</p>
+
+                <p>I found a permanent home in the Holt Farmer's Market and began booking events all around our
+                    community. Before long, we had "regulars" who would come to market just to see us for Hot Chocolate
+                    and Roasted Nuts! Organizers were then making space for us all around the community and we became
+                    the perfect edition to nearly any event!</p>
+
+                <p>People would follow the smell and say "Oh.. I am SO glad you're here!...we just LOVE these". Over
+                    time, we have come to recognize, and look forward to seeing, the friendly faces that follow and
+                    support us! We appreciate each and every one of you!</p>
+
+                <p>Our roasted nuts are vegan and gluten free and contain only FIVE simple ingredients! They go great on
+                    salad, ice cream, oatmeal, or just as a quick snack on the go!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section class="schedule" id="schedule">
+        <div class="container">
+            <h2 class="section-title">Find Us</h2>
+            <div class="schedule-grid">
+                <div class="schedule-card">
+                    <h3>🏪 Holt Farmer's Market</h3>
+                    <p><strong>When:</strong> Saturdays 9am-2pm</p>
+                    <p><strong>Where:</strong> Holt, Michigan</p>
+                    <p>Our permanent home! Come visit us every Saturday for fresh roasted nuts and hot chocolate.</p>
+                </div>
+                <div class="schedule-card">
+                    <h3>🎪 Community Events</h3>
+                    <p><strong>When:</strong> Various dates</p>
+                    <p><strong>Where:</strong> Around Mid-Michigan</p>
+                    <p>We love participating in festivals, fairs, and community events. Follow us for updates!</p>
+                </div>
+                <div class="schedule-card">
+                    <h3>📦 Online Orders</h3>
+                    <p><strong>When:</strong> Anytime</p>
+                    <p><strong>Where:</strong> Shipped nationwide</p>
+                    <p>Can't make it to an event? Order online and we'll ship fresh nuts right to your door!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Your Cart</h3>
+                <button class="close-cart" onclick="toggleCart()">×</button>
+            </div>
+            <div id="cart-items">
+                <p>Your cart is empty</p>
+            </div>
+            <div class="cart-total" id="cart-total">Total: $0.00</div>
+            <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>📧 thenutbarnllc@gmail.com</p>
+                    <p>📞 (517) 410-9029</p>
+                    <p>📍 Dimondale, Michigan</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Payment Methods</h3>
+                    <p>💳 Square</p>
+                    <p>💰 PayPal</p>
+                    <p>📱 Venmo @nutbarn</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#">Facebook</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">Email</a>
+                    </div>
+                </div>
+            </div>
+            <p style="margin-top: 30px; padding-top: 30px; border-top: 1px solid #555;">
+                © 2025 The Nut Barn LLC. All rights reserved.
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>
