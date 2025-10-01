@@ -1,4 +1,4 @@
-# netlify.toml - Place this in your repository root
+# netlify.toml
 [build]
   base = "/"
   command = "npm run build"
@@ -13,12 +13,18 @@
   to = "/.netlify/functions/:splat"
   status = 200
 
-# Handle single page app routing
+# Default SPA routing (public pages)
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-  conditions = {Role = ["admin"]}
+
+# Admin-only section
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin.html"
+  status = 200
+  role = "admin"
 
 # Headers for security
 [[headers]]
