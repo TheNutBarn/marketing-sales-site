@@ -24,6 +24,9 @@
     "small-business",
     "netlify"
   ],
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "author": "The Nut Barn LLC",
   "license": "MIT"
 }
