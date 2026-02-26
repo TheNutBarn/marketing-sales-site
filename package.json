@@ -1,29 +1,32 @@
 {
   "name": "the-nut-barn",
-  "version": "1.0.0",
-  "description": "The Nut Barn - Fresh Roasted Cinnamon Nuts E-commerce Site",
-  "main": "src/index.html",
+  "version": "2.0.0",
+  "description": "The Nut Barn - Fresh Roasted Cinnamon Nuts — Next.js headless site",
+  "private": true,
   "scripts": {
-    "dev": "netlify dev",
-    "build": "npm run build:css && npm run build:js && npm run copy:html",
-    "build:css": "mkdir -p dist && cp src/css/styles.css dist/",
-    "build:js": "mkdir -p dist && cp src/js/main.js dist/",
-    "copy:html": "cp src/index.html dist/",
-    "deploy": "netlify deploy --prod"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "stripe": "^14.0.0",
-    "@supabase/supabase-js": "^2.38.0"
+    "next": "15.5.12",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "nodemailer": "^6.9.14"
   },
   "devDependencies": {
-    "netlify-cli": "^17.0.0"
+    "@types/node": "^20.14.0",
+    "@types/nodemailer": "^6.4.15",
+    "@types/react": "^19.1.6",
+    "@types/react-dom": "^19.1.2",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "15.5.12",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.4.5"
   },
-  "keywords": [
-    "ecommerce",
-    "nuts",
-    "small-business",
-    "netlify"
-  ],
   "engines": {
     "node": ">=22.0.0"
   },
