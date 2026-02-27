@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { Resend } from 'resend'
 
 interface ContactPayload {
   name: string
@@ -25,7 +26,6 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  // Basic email format validation
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return NextResponse.json({ error: 'Invalid email address' }, { status: 400 })
   }
@@ -36,11 +36,17 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Server configuration error' }, { status: 500 })
   }
 
+  const resendKey = process.env.RESEND_API_KEY
+  if (!resendKey) {
+    console.error('[contact] RESEND_API_KEY env var is not set')
+    return NextResponse.json({ error: 'Server configuration error' }, { status: 500 })
+  }
+
   const emailSubject = subject
     ? `[The Nut Barn] ${subject}`
-    : `[The Nut Barn] New Contact Form Message from ${name}`
+    : `[The Nut Barn] New Contact Message from ${name}`
 
-  const emailBody = `
+  const emailText = `
 New message from The Nut Barn contact form:
 
 Name: ${name}
@@ -51,47 +57,27 @@ ${message}
 
 ---
 Sent via thenutbarn.com contact form
+Reply to this email to respond directly to ${name}.
 `.trim()
 
-  // Log for server-side visibility in development / Vercel logs
-  console.log('[contact] Received form submission:', { name, email, subject })
-
-  // Check if SMTP is configured — if so, send email via nodemailer
-  const smtpHost = process.env.SMTP_HOST
-  if (smtpHost) {
-    try {
-      // Dynamic import to avoid nodemailer being bundled when not needed
-      const nodemailer = await import('nodemailer')
-      const transporter = nodemailer.default.createTransport({
-        host: process.env.SMTP_HOST,
-        port: parseInt(process.env.SMTP_PORT ?? '587'),
-        secure: process.env.SMTP_PORT === '465',
-        auth: {
-          user: process.env.SMTP_USER,
-          pass: process.env.SMTP_PASS,
-        },
-      })
-
-      await transporter.sendMail({
-        from: `"The Nut Barn Website" <${process.env.SMTP_USER}>`,
-        to: contactEmail,
-        replyTo: email,
-        subject: emailSubject,
-        text: emailBody,
-      })
-
-      console.log('[contact] Email sent via SMTP to:', contactEmail)
-    } catch (err) {
-      console.error('[contact] SMTP send failed:', err)
-      return NextResponse.json(
-        { error: 'Failed to send email. Please contact us directly.' },
-        { status: 500 }
-      )
-    }
-  } else {
-    // No SMTP configured — log submission for Vercel function logs visibility
-    // In production, configure SMTP or use a service like Resend / SendGrid
-    console.log('[contact] No SMTP configured. Submission details:\n', emailBody)
+  try {
+    const resend = new Resend(resendKey)
+    await resend.emails.send({
+      // Update 'from' to a verified domain address once DNS is configured, e.g.:
+      // from: 'The Nut Barn <noreply@thenutbarn.com>'
+      from: 'The Nut Barn <onboarding@resend.dev>',
+      to: [contactEmail],
+      replyTo: email,
+      subject: emailSubject,
+      text: emailText,
+    })
+    console.log('[contact] Email sent via Resend to:', contactEmail)
+  } catch (err) {
+    console.error('[contact] Resend send failed:', err)
+    return NextResponse.json(
+      { error: 'Failed to send email. Please contact us directly.' },
+      { status: 500 }
+    )
   }
 
   return NextResponse.json({ success: true }, { status: 200 })
