@@ -97,7 +97,6 @@ async function wpFetch<T>(query: string, variables?: Record<string, unknown>): P
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ query, variables }),
-    next: { revalidate: 3600 }, // ISR: revalidate every hour
   })
 
   if (!res.ok) {
