@@ -1,33 +1,44 @@
 {
   "name": "the-nut-barn",
-  "version": "1.0.0",
-  "description": "The Nut Barn - Fresh Roasted Cinnamon Nuts E-commerce Site",
-  "main": "src/index.html",
+  "type": "module",
+  "private": true,
   "scripts": {
-    "dev": "netlify dev",
-    "build": "npm run build:css && npm run build:js && npm run copy:html",
-    "build:css": "mkdir -p dist && cp src/css/styles.css dist/",
-    "build:js": "mkdir -p dist && cp src/js/main.js dist/",
-    "copy:html": "cp src/index.html dist/",
-    "deploy": "netlify deploy --prod"
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
-    "stripe": "^14.0.0",
-    "@supabase/supabase-js": "^2.38.0"
+    "@nuxtjs/sitemap": "^7.0.0",
+    "@pinia/nuxt": "^0.9.0",
+    "nuxt": "^4.3.1",
+    "pinia": "^2.3.1",
+    "resend": "^4.0.0",
+    "vue": "^3.5.28",
+    "vue-router": "^4.6.4",
+    "zod": "^3.24.0"
   },
   "devDependencies": {
-    "netlify-cli": "^17.0.0"
+    "@nuxt/test-utils": "^3.17.0",
+    "@tailwindcss/vite": "^4.1.0",
+    "@vue/test-utils": "^2.4.6",
+    "tailwindcss": "^4.1.0",
+    "vitest": "^3.0.0"
   },
-  "keywords": [
-    "ecommerce",
-    "nuts",
-    "small-business",
-    "netlify"
-  ],
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "esbuild",
+      "vue-demi"
+    ]
+  },
   "engines": {
     "node": ">=24.0.0",
     "pnpm": ">=10"
-  },
-  "author": "The Nut Barn LLC",
-  "license": "MIT"
+  }
 }
