@@ -3,7 +3,63 @@
 **Business:** The Nut Barn LLC
 **Location:** Dimondale, Michigan
 **Contact:** thenutbarnllc@gmail.com | (517) 410-9029
-**Document version:** 1.2 — March 2026 (rendering strategy, order flow, Resend/Supabase/Stripe documented)
+**Document version:** 1.3 — March 2026 (founding brief, brand visual identity added)
+
+---
+
+## Section 0 — Founding Brief
+
+*The original client email that started this project. Preserved verbatim as the authoritative source of brand voice, product data, and business intent.*
+
+---
+
+> Hi guys... Here is what I came up with so far for the website.
+>
+> I just want something that we can post a schedule to so people can come out to us.. and make it so people can place and/or email orders for shipping with payment to square/Paypal/venmo.
+>
+> Our email address is thenutbarnllc@gmail.com — Dimondale Michigan — Phone 5174109029
+>
+> I'm not sure what you need to connect our payment methods but we have: Venmo @nutbarn / Square / PayPal
+>
+> Our story began in August 2023 when my husband and I decided to embark on a new adventure that we could eventually use to supplement our retirement income and teach our grandchildren the valuable lessons that come with owning your own business.
+>
+> I remember these little nut stands being at the mall growing up in the 80s and you could just follow that smell from a hundred yards away, but much like the nostalgia of the drive in theatre and big name bands like REO Speedwagon at the County Fair, these little stands fell away and became harder to find outside of the annual Renaissance Fair in Michigan.
+>
+> It took a little convincing for my husband to take this leap of faith with me but I knew he would say yes to buying this little nut stand because he's never told me "No" to anything in 26 years of marriage....so we jumped right in with both feet!
+>
+> I found a permanent home in the Holt Farmer's Market and began booking events all around our community. Before long, we had "regulars" who would come to market just to see us for Hot Chocolate and Roasted Nuts! Organizers were then making space for us all around the community and we became the perfect edition to nearly any event! People would follow the smell and say "Oh.. I am SO glad you're here!...we just LOVE these". Over time, we have come to recognize, and look forward to seeing, the friendly faces that follow and support us! We appreciate each and every one of you!
+>
+> Our goal is to make our cinnamon roasted nuts available to anyone who wants to support our small business by ordering online. We will ship fresh product to you anywhere in the U.S. and our gift baskets make it easy to shop for that special someone and send them a healthy treat for any occasion.
+>
+> Our roasted nuts are vegan and gluten free and contain only FIVE simple ingredients! They go great on salad, ice cream, oatmeal, or just as a quick snack on the go!
+>
+> Prices are:
+> - 6 oz - $10
+> - 8 oz - $15
+> - 15 oz - $23
+> - Holiday and/or Occasion Gift Baskets are made to Order starting at $40 and include Hot Chocolate mixes.
+
+---
+
+### Brand Assets Received
+
+| Asset | Description | Location |
+|---|---|---|
+| Booth photo (exterior) | Full booth setup — yellow canopy, red banner, pine wood counter | `/docs/assets/booth-exterior.jpg` |
+| Booth photo (wide) | Wide shot showing hot chocolate bar cabinet on left | `/docs/assets/booth-wide.jpg` |
+| Booth detail | Close-up of chalkboard sign, wood grain, display case | `/docs/assets/booth-detail.jpg` |
+| Logo (white bg) | Mascot character on white background | `/docs/assets/logo-white.png` |
+| Logo (blue bg) | Mascot character on steel blue background | `/docs/assets/logo-blue.png` |
+
+### Key Observations from Founding Brief
+
+- **Two core products at market:** Cinnamon Glazed Nuts + Hot Chocolate (shown on booth banner and chalkboard)
+- **"WARNING: PRODUCT MAY BE HABIT FORMING"** — printed on the display case. Prime brand copy, must appear on the website.
+- **Hot Coffee is also offered** — the booth banner reads "CINNAMON GLAZED NUTS • HOT COFFEE • WATER"
+- **The booth is handmade pine/cedar** — the warm honey-wood aesthetic is the physical brand; the website must echo it
+- **String lights** throughout the booth — warm, market-fair, inviting atmosphere
+- **"Hot Chocolate Bar"** — labeled as a named station on the left cabinet
+- **Chalkboard signs** with hand-drawn art are the primary in-person price/menu display system
 
 ---
 
@@ -216,6 +272,325 @@ The Nut Barn competes in the artisan/specialty food segment at farmer's markets 
 - Remove `alert()` for cart additions — use inline toast notification (Popover API)
 - Add "Continue Shopping" after add-to-cart instead of forcing cart open
 - "Place Order" opens a `<dialog>` form — never a mailto link
+
+---
+
+## Section 4b — Brand Visual Identity
+
+*This section supersedes the generic color palette in Section 4 and the earlier design review. It is grounded in the actual logo, booth photography, and founding brief received March 2026.*
+
+---
+
+### The Logo
+
+The Nut Barn mascot is an anthropomorphized nut character — the central brand asset:
+
+- **Character:** Walnut/nut body, warm brown, with a face — winking and pointing upward
+- **Outfit:** Blue denim overalls, yellow straw cowboy hat, black work gloves
+- **Prop:** Pitchfork held in left hand
+- **Setting:** Red classic barn, dirt path, green bushes/grass
+- **Logotype:** "The Nut Barn" in a hand-lettered, slightly rough marker/brush style — casual, not refined
+
+**Two versions exist:** white background (for light contexts) and steel blue background (`~#5B7FA6`).
+
+### What the Logo Tells Us About the Brand
+
+The mascot is **playful, character-driven, and family-friendly** — not sophisticated or premium-aspirational. This is a critical pivot from any design approach that treats The Nut Barn as a refined artisan brand. The correct frame is:
+
+> **Warm, whimsical, and approachable** — like a favorite vendor you look forward to seeing every Saturday.
+
+The Playfair Display recommendation from earlier generic reviews is **too refined for this logo**. It would create visual dissonance between the hand-lettered mascot and an elegant serif heading system.
+
+---
+
+### Revised Color Palette
+
+The actual brand uses colors not in the original 5-token CSS set. The booth and logo together define the complete physical palette:
+
+| Token | Hex | Source | Usage |
+|---|---|---|---|
+| `brown` | `#8B4513` | Original CSS / nut body color | Primary, headings, borders |
+| `brown-dark` | `#5c2d0e` | Original CSS | Hover states, footer |
+| `brown-mid` | `#654321` | Booth wood shadow | Nav bar, secondary surfaces |
+| `orange` | `#ff6b35` | Original CSS | CTAs, price display |
+| `orange-hover` | `#e85d29` | — | Hover on orange |
+| `barn-red` | `#9B1B1B` | Booth banner + logo barn | Section accents, badge backgrounds |
+| `straw` | `#C9A84C` | Logo cowboy hat | Warm accent, highlight |
+| `denim` | `#3B6EA5` | Logo overalls | Accent only — use sparingly |
+| `pine-wood` | `#C8892A` | Booth pine counter | Texture accent, warm border |
+| `chalkboard` | `#1C1C1C` | Booth chalkboard | Schedule section bg, contrast surfaces |
+| `chalk-white` | `#F2F0EB` | Chalk text color | Text on chalkboard surfaces |
+| `cream` | `#f8f6f0` | Original CSS | Page background |
+| `cream-dark` | `#ede9df` | Original CSS | Alternate section bg |
+| `cream-warm` | `#f4e4bc` | Booth ambient light | Story, testimonial backgrounds |
+| `text` | `#2d1a0e` | — | Body text (warmer than #333) |
+| `text-muted` | `#6b5a4e` | — | Captions, labels |
+| `success` | `#2d7d46` | — | Vegan/GF badges |
+| `error` | `#c0392b` | — | Error states |
+| `border` | `#d9cfc4` | — | Default borders |
+
+**Key additions vs. original palette:**
+- `barn-red` — the physical booth banner color; grounding the brand in the actual visual identity
+- `straw` — from the cowboy hat; warm golden accent
+- `denim` — from overalls; sparingly for contrast badges or callouts
+- `pine-wood` — from the handmade cedar booth; echoes the warmth of the physical space
+- `chalkboard` + `chalk-white` — for the chalkboard UI pattern (see below)
+
+---
+
+### Typography — Revised
+
+The hand-lettered logo means the web typography should **complement without competing**. The goal: warmth and approachability that matches the mascot's personality.
+
+**Recommended stack:**
+
+| Role | Font | Weight | Source |
+|---|---|---|---|
+| Display / Hero H1 | Alfa Slab One | 400 (only weight) | Google Fonts |
+| Headings H2–H3 | Josefin Slab | 600, 700 | Google Fonts |
+| Body | Lato | 400, 700 | Google Fonts |
+| Chalkboard elements | Caveat | 400, 700 | Google Fonts |
+
+**Why these choices:**
+
+- **Alfa Slab One** — a bold slab serif with a Western/farmhouse personality that aligns with the cowboy hat and barn. Used only for the hero headline. Distinctive, immediately readable.
+- **Josefin Slab** — a geometric slab serif. Clean enough for subheadings, warm enough to match the brand. The slab serif category echoes the handcrafted visual language without being novelty.
+- **Lato** — humanist sans-serif body text. Warm, approachable, high legibility. Keeps body copy professional and readable.
+- **Caveat** — a handwritten Google Font used *only* for chalkboard-styled UI elements (market schedule, "today's special" callouts). Evokes the physical chalkboard signs without making headings illegible.
+
+**Do NOT use:** Playfair Display (too refined/editorial for this mascot), Lobster (cliché), any script font for headings.
+
+**Google Fonts import:**
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Josefin+Slab:wght@600;700&family=Lato:wght@400;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+```
+
+**Payload:** ~60–70KB woff2 total across all four families.
+
+---
+
+### The Chalkboard UI Pattern
+
+The physical booth uses chalkboard-on-wood as the primary price/menu display. This is a strong brand asset that should translate to specific UI contexts on the website — **not** the entire site aesthetic.
+
+**Use chalkboard styling for:**
+- Market schedule section on `/find-us` — dark chalkboard background, `Caveat` font for event names and dates
+- "Coming to your neighborhood" callouts
+- "Today's Special" or seasonal badges
+- The schedule strip on the homepage `/` find-us section
+
+**Do NOT use chalkboard styling for:**
+- Product cards (readability loss)
+- Body copy
+- Navigation
+- Form elements
+
+**CSS implementation:**
+```css
+.chalkboard {
+  background: var(--color-chalkboard);
+  color: var(--color-chalk-white);
+  font-family: var(--font-chalk);  /* Caveat */
+  border: 3px solid var(--color-pine-wood);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-6) var(--spacing-8);
+  /* Optional: subtle chalk texture via noise filter */
+  /* filter: url(#chalk-noise); */
+}
+```
+
+---
+
+### Mascot Integration Plan
+
+The nut farmer character must be a first-class web asset, not just an image in the footer.
+
+| Location | Usage | Format |
+|---|---|---|
+| Header / Nav | Small nut head icon (cropped mascot) as secondary logo mark | SVG |
+| Favicon | Nut head + hat silhouette, 32×32 | SVG/ICO |
+| 404 Page | Full mascot, pointing at "We couldn't find that page..." | SVG or PNG |
+| Empty cart state | Mascot with pitchfork, empty basket | SVG or PNG |
+| Order success state | Mascot giving thumbs up / winking | SVG or PNG |
+| Homepage hero | Mascot as a large decorative element alongside the hero CTA | PNG (transparent) |
+| Product section divider | Mascot silhouette as a section break | SVG |
+
+**SVG conversion:** The logo should be traced to SVG so it scales to any size and downloads as a single HTTP request. Commission this from a vector artist or use the existing PNG as a reference for the favicon.
+
+**Logo backgrounds:** The white-background version is for light contexts (product cards, email headers). The blue-background version is not needed on the website — build the mascot to work on cream, brown, and chalkboard backgrounds with `mix-blend-mode` or transparent PNG.
+
+---
+
+### Brand Voice — Key Copy Assets
+
+These phrases from the physical booth and founding brief are canonical brand copy:
+
+| Copy | Source | Web Usage |
+|---|---|---|
+| **"WARNING: PRODUCT MAY BE HABIT FORMING"** | Display case sticker | Hero subtext, product badge, meta description |
+| **"Cinnamon Glazed Nuts • Hot Coffee • Water"** | Booth banner | Find us / booth description |
+| **"Roasted Nuts $5.00"** | Chalkboard (market price) | Context: market prices may differ from online prices |
+| **"Hot Chocolate Bar"** | Cabinet sign | /find-us page, homepage trust strip |
+| **"Oh.. I am SO glad you're here!"** | Founding brief | Homepage hero pull quote from a customer |
+| **"People would follow the smell"** | Founding brief | Homepage hero subheadline |
+| **"FIVE simple ingredients"** | Founding brief | Product badge, trust strip |
+| **"Never told me 'No' in 26 years"** | Founding brief | Our Story page, humanizing detail |
+
+---
+
+### What "Hot Coffee" vs. "Hot Chocolate" Means for the Site
+
+The booth banner says "HOT COFFEE" but the chalkboard says "HOT Chocolate $2.00" and the cabinet says "Hot Chocolate Bar." Hot Chocolate is the signature warm drink pairing. **The website should lead with Hot Chocolate, not Hot Coffee.**
+
+Hot Chocolate appears in:
+- The founding brief as a product that brings regulars back
+- The Gift Basket product description (includes Hot Chocolate mixes)
+- The booth's dedicated "Hot Chocolate Bar" station
+
+**Action:** All website references to warm drinks should say "Hot Chocolate" (not "Hot Coffee"). Update the `/find-us` and homepage copy accordingly.
+
+---
+
+### Physical Brand Palette → `@theme` Mapping
+
+The complete `@theme` block incorporating actual booth and logo colors:
+
+```css
+@import "tailwindcss";
+
+@theme {
+  /* FONTS */
+  --font-display: 'Alfa Slab One', 'Georgia', serif;
+  --font-heading: 'Josefin Slab', 'Georgia', serif;
+  --font-body:    'Lato', system-ui, -apple-system, sans-serif;
+  --font-chalk:   'Caveat', cursive;
+  --font-mono:    ui-monospace, 'Courier New', monospace;
+
+  /* COLORS — Brand Core */
+  --color-brown:          #8B4513;
+  --color-brown-dark:     #5c2d0e;
+  --color-brown-mid:      #654321;
+  --color-orange:         #ff6b35;
+  --color-orange-hover:   #e85d29;
+
+  /* COLORS — Physical Brand (from booth + logo) */
+  --color-barn-red:       #9B1B1B;
+  --color-straw:          #C9A84C;
+  --color-denim:          #3B6EA5;
+  --color-pine-wood:      #C8892A;
+  --color-chalkboard:     #1C1C1C;
+  --color-chalk-white:    #F2F0EB;
+
+  /* COLORS — Surfaces */
+  --color-cream:          #f8f6f0;
+  --color-cream-dark:     #ede9df;
+  --color-cream-warm:     #f4e4bc;
+
+  /* COLORS — Text */
+  --color-text:           #2d1a0e;
+  --color-text-muted:     #6b5a4e;
+  --color-text-inverse:   #ffffff;
+
+  /* COLORS — Semantic */
+  --color-success:        #2d7d46;
+  --color-success-light:  #e8f5ed;
+  --color-error:          #c0392b;
+  --color-error-light:    #fdf0ee;
+
+  /* COLORS — UI */
+  --color-border:         #d9cfc4;
+  --color-border-strong:  #b5a89a;
+  --color-focus:          #8B4513;
+
+  /* FONT SIZES */
+  --font-size-xs:      0.75rem;
+  --font-size-sm:      0.875rem;
+  --font-size-base:    1rem;
+  --font-size-lg:      1.125rem;
+  --font-size-xl:      1.375rem;
+  --font-size-2xl:     1.75rem;
+  --font-size-3xl:     2.25rem;
+  --font-size-4xl:     2.75rem;
+  --font-size-5xl:     3.5rem;
+  --font-size-display: 4.5rem;
+
+  /* LINE HEIGHTS */
+  --line-height-tight:   1.25;
+  --line-height-snug:    1.4;
+  --line-height-base:    1.7;
+  --line-height-relaxed: 1.8;
+
+  /* SPACING (4px grid) */
+  --spacing-1:   0.25rem;
+  --spacing-2:   0.5rem;
+  --spacing-3:   0.75rem;
+  --spacing-4:   1rem;
+  --spacing-6:   1.5rem;
+  --spacing-8:   2rem;
+  --spacing-10:  2.5rem;
+  --spacing-12:  3rem;
+  --spacing-16:  4rem;
+  --spacing-20:  5rem;
+  --spacing-24:  6rem;
+  --spacing-32:  8rem;
+
+  /* BORDER RADIUS */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-full: 9999px;
+
+  /* SHADOWS — warm-tinted */
+  --shadow-sm:   0 1px 3px rgba(45, 26, 14, 0.08);
+  --shadow-md:   0 4px 12px rgba(45, 26, 14, 0.10);
+  --shadow-lg:   0 8px 24px rgba(45, 26, 14, 0.12);
+  --shadow-xl:   0 16px 48px rgba(45, 26, 14, 0.15);
+
+  /* TRANSITIONS */
+  --duration-quick:    150ms;
+  --duration-base:     250ms;
+  --duration-moderate: 350ms;
+  --duration-slow:     500ms;
+  --ease-out:   cubic-bezier(0.0, 0.0, 0.2, 1);
+  --ease-in:    cubic-bezier(0.4, 0.0, 1.0, 1);
+  --ease-inout: cubic-bezier(0.4, 0.0, 0.2, 1);
+
+  /* LAYOUT */
+  --container-sm:  42rem;
+  --container-md:  48rem;
+  --container-lg:  72rem;
+  --container-xl:  80rem;
+
+  /* Z-INDEX */
+  --z-sticky:  100;
+  --z-drawer:  200;
+  --z-dialog:  300;
+  --z-toast:   400;
+
+  /* GRADIENTS */
+  --gradient-product: linear-gradient(135deg, #f4e4bc 0%, #C8892A 60%, #8B4513 100%);
+  --gradient-hero:    linear-gradient(135deg, #8B4513 0%, #C8892A 100%);
+  --gradient-barn:    linear-gradient(135deg, #9B1B1B 0%, #5c2d0e 100%);
+}
+
+/* Component-level custom properties */
+:root {
+  --header-height: 64px;
+  --drawer-width:  400px;
+  --touch-target:  48px;
+}
+
+/* Motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+```
 
 ---
 
