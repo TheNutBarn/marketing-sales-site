@@ -78,7 +78,9 @@ export default defineNuxtConfig({
     },
   },
 
-  sitemap: {
-    siteUrl: 'https://thenutbarn.com',
+  site: {
+    url: 'https://thenutbarn.com',
   },
+
+  sitemap: {},
 })
