@@ -1,31 +1,11 @@
 import { defineStore } from 'pinia'
-import { ref, computed, watch } from 'vue'
+import { ref, computed } from 'vue'
 import type { CartItem } from '../../shared/types/cart'
 import { getProductById } from '../lib/products'
-
-const STORAGE_KEY = 'nutbarn-cart'
 
 export const useCartStore = defineStore('cart', () => {
   const items = ref<CartItem[]>([])
   const isDrawerOpen = ref(false)
-
-  // SSR guard — only access localStorage on the client to prevent hydration mismatch
-  if (import.meta.client) {
-    const stored = localStorage.getItem(STORAGE_KEY)
-    if (stored) {
-      try {
-        items.value = JSON.parse(stored) as CartItem[]
-      } catch {
-        localStorage.removeItem(STORAGE_KEY)
-      }
-    }
-
-    watch(
-      items,
-      (val) => localStorage.setItem(STORAGE_KEY, JSON.stringify(val)),
-      { deep: true },
-    )
-  }
 
   const itemCount = computed(() =>
     items.value.reduce((sum, item) => sum + item.quantity, 0),
