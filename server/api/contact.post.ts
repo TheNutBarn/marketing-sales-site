@@ -40,7 +40,6 @@ export default defineEventHandler(async (event) => {
       <p style="white-space:pre-wrap;line-height:1.6;">${escapeHtml(message)}</p>
     </div>
   `;
-  console.log("[contact] contactEmail:", config.contactEmail);
 
   if (config.resendApiKey) {
     const resend = new Resend(config.resendApiKey);
