@@ -160,14 +160,14 @@ export default defineEventHandler(async (event) => {
   if (config.resendApiKey) {
     const resend = new Resend(config.resendApiKey);
     const { error } = await resend.emails.send({
-      from: "The Nut Barn Orders <orders@nutbarn.com>",
+      from: config.contactEmail || "The Nut Barn Orders <orders@nutbarn.com>",
       to: config.contactEmail || "thenutbarnllc@gmail.com",
       replyTo: email,
       subject: `New Order ${orderRef} — ${name}`,
       html: emailHtml,
     });
     console.warn("[orders] Sending order email with Resend:", {
-      from: "The Nut Barn Orders <orders@nutbarn.com>",
+      from: config.contactEmail || "The Nut Barn Orders <orders@nutbarn.com>",
       to: config.contactEmail || "thenutbarnllc@gmail.com",
       replyTo: email,
       subject: `New Order ${orderRef} — ${name}`,
