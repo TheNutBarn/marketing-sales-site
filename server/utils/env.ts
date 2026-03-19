@@ -11,7 +11,7 @@ export function prependEnv(text: string): string {
  * @returns the abbreviated environment name
  */
 export function envAbbr(): string {
-  switch (useRuntimeConfig().nodeEnv) {
+  switch (useRuntimeConfig().env) {
     case "local":
       return "local";
     case "development":
@@ -25,19 +25,19 @@ export function envAbbr(): string {
  * @returns true if the environment is "production"
  */
 export function isProd(): boolean {
-  return useRuntimeConfig().nodeEnv === "production";
+  return useRuntimeConfig().env === "production";
 }
 
 /**
  * @returns true if the environment is "development"
  */
 export function isDev(): boolean {
-  return useRuntimeConfig().nodeEnv === "development";
+  return useRuntimeConfig().env === "development";
 }
 
 /**
  * @returns true if the environment is "local"
  */
 export function isLocal(): boolean {
-  return useRuntimeConfig().nodeEnv === "local";
+  return useRuntimeConfig().env === "local";
 }
