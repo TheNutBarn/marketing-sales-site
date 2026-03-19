@@ -14,6 +14,8 @@ export function envAbbr(): string {
   switch (useRuntimeConfig().env) {
     case "local":
       return "local";
+    case "staging":
+      return "staging";
     case "development":
       return "dev";
     default:
