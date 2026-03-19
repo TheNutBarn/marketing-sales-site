@@ -157,22 +157,18 @@ export default defineEventHandler(async (event) => {
     </div>
   `;
 
+  const emailOptions = {
+    from: `The Nut Barn Orders <${config.noReplyEmail}>`,
+    to: email,
+    replyTo: config.replyToOrderEmail,
+    subject: prependEnv(`New Order ${orderRef} — ${name}`),
+    html: emailHtml,
+  };
   if (config.resendApiKey) {
     const resend = new Resend(config.resendApiKey);
-    const { error } = await resend.emails.send({
-      from: config.contactEmail || "The Nut Barn Orders <orders@nutbarn.com>",
-      to: config.contactEmail || "thenutbarnllc@gmail.com",
-      replyTo: email,
-      subject: `New Order ${orderRef} — ${name}`,
-      html: emailHtml,
-    });
-    console.warn("[orders] Sending order email with Resend:", {
-      from: config.contactEmail || "The Nut Barn Orders <orders@nutbarn.com>",
-      to: config.contactEmail || "thenutbarnllc@gmail.com",
-      replyTo: email,
-      subject: `New Order ${orderRef} — ${name}`,
-      html: emailHtml,
-    });
+    const { error } = await resend.emails.send(emailOptions);
+
+    console.warn("[orders] Sending order email with Resend:", emailOptions);
 
     if (error) {
       console.error("[orders] Resend error:", error);
@@ -183,12 +179,10 @@ export default defineEventHandler(async (event) => {
     }
   } else {
     // Dev mode — log instead of sending
-    console.info("[orders] RESEND_API_KEY not configured — order logged:", {
-      to: config.contactEmail,
-      orderRef,
-      totalDollars,
-      name,
-    });
+    console.info(
+      "[orders] RESEND_API_KEY not configured — order logged:",
+      emailOptions,
+    );
   }
 
   return {

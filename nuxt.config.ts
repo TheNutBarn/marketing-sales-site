@@ -26,11 +26,14 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    resendApiKey: '',       // NUXT_RESEND_API_KEY
-    contactEmail: '',       // NUXT_CONTACT_EMAIL
-    stripeSecretKey: '',    // NUXT_STRIPE_SECRET_KEY (Phase 2)
+    resendApiKey: '',           // NUXT_RESEND_API_KEY
+    noReplyEmail: '',           // NUXT_NO_REPLY_EMAIL
+    replyToContactEmail: '',    // NUXT_REPLY_TO_CONTACT_EMAIL
+    replyToOrderEmail: '',      // NUXT_REPLY_TO_ORDER_EMAIL
+    nodeEnv: '',                // NUXT_NODE_ENV
+    stripeSecretKey: '',        // NUXT_STRIPE_SECRET_KEY (Phase 2)
     public: {
-      wordpressApiUrl: '',        // NUXT_WORDPRESS_API_URL
+      wordpressApiUrl: '',        // NUXT_PUBLIC_WORDPRESS_API_URL
       stripePublishableKey: '',   // NUXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
     },
   },

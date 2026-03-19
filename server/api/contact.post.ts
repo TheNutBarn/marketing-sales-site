@@ -2,6 +2,7 @@ import { z } from "zod";
 import { Resend } from "resend";
 import { rateLimit } from "../utils/rateLimit";
 import { escapeHtml } from "../utils/escapeHtml";
+import { prependEnv } from "../utils/env";
 
 const ContactSchema = z.object({
   name: z.string().min(2).max(100).trim(),
@@ -41,15 +42,17 @@ export default defineEventHandler(async (event) => {
     </div>
   `;
 
+  const emailOptions = {
+    from: `The Nut Barn Contact <${config.noReplyEmail}>`,
+    to: email,
+    replyTo: config.replyToContactEmail,
+    subject: prependEnv(`Website Contact: ${subject}`),
+    html: emailHtml,
+  };
+
   if (config.resendApiKey) {
     const resend = new Resend(config.resendApiKey);
-    const { error } = await resend.emails.send({
-      from: config.contactEmail || "The Nut Barn Website <orders@nutbarn.com>",
-      to: config.contactEmail || "thenutbarnllc@gmail.com",
-      replyTo: email,
-      subject: `Website Contact: ${subject}`,
-      html: emailHtml,
-    });
+    const { error } = await resend.emails.send(emailOptions);
 
     if (error) {
       console.error("[contact] Resend error:", error);
@@ -59,15 +62,14 @@ export default defineEventHandler(async (event) => {
       });
     }
   } else {
-    console.info("[contact] RESEND_API_KEY not configured — message logged:", {
-      name,
-      email,
-      subject,
-    });
+    console.info(
+      "[contact] RESEND_API_KEY not configured — message logged:",
+      emailOptions,
+    );
   }
 
   return {
     success: true,
-    message: "Your message has been sent! We'll reply within 24 hours.",
+    message: "Your message has been sent! We'll reply within 1 business day.",
   };
 });
