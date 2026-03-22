@@ -38,30 +38,35 @@ function formatEventTime(dateStr: string): string {
     <!-- Hero -->
     <section class="px-4 py-14 text-center" style="background:var(--gradient-hero);color:var(--color-text-inverse);">
       <div class="mx-auto" style="max-width:var(--container-md);">
-        <h1 style="font-size:clamp(2rem,5vw,3.5rem);">Find Us</h1>
-        <p class="mt-3 text-lg" style="color:rgba(255,255,255,0.85);">
+        <p class="eyebrow mb-2" style="color:var(--color-mustard);">Holt Farmer's Market</p>
+        <h1 style="font-size:clamp(2rem,5vw,3.5rem);color:var(--color-cream-light);">Find Us</h1>
+        <p class="mt-3 text-lg" style="color:rgba(253,246,232,0.85);">
           Fresh from the Holt Farmer's Market · Every Saturday · 9am–2pm
         </p>
       </div>
     </section>
 
     <div class="mx-auto px-4 py-12" style="max-width:var(--container-lg);">
-      <!-- Event schedule — chalkboard UI pattern -->
-      <h2 class="mb-6 text-center" style="color:var(--color-brown);">Upcoming Markets</h2>
+      <!-- Event schedule — chalkboard UI pattern (PRESERVED) -->
+      <div class="text-center mb-6">
+        <p class="eyebrow">Market Days</p>
+        <h2 style="color:var(--color-denim);">Upcoming Markets</h2>
+        <p class="ornament">— ✦ —</p>
+      </div>
 
       <!-- Empty state -->
-      <div v-if="upcomingEvents.length === 0" class="chalkboard p-8 text-center rounded-2xl" style="font-family:var(--font-chalk);font-size:1.25rem;">
+      <div v-if="upcomingEvents.length === 0" class="chalkboard p-8 text-center rounded-lg" style="font-family:var(--font-chalk);font-size:1.25rem;">
         <p class="mb-3">No upcoming events scheduled.</p>
         <p style="font-size:1rem;opacity:0.8;">Follow us on Instagram @thenutbarn for updates!</p>
       </div>
 
-      <!-- Events list (chalkboard style) -->
-      <ul v-else class="chalkboard divide-y divide-pine-wood/30 rounded-2xl overflow-hidden" style="border:3px solid var(--color-pine-wood);">
+      <!-- Events list (chalkboard style — PRESERVED) -->
+      <ul v-else class="chalkboard divide-y rounded-lg overflow-hidden" style="border:3px solid #C8892A;--tw-divide-opacity:0.3;border-color:#C8892A;">
         <li
           v-for="event in upcomingEvents"
           :key="event.id"
           class="p-6"
-          style="font-family:var(--font-chalk);"
+          style="font-family:var(--font-chalk);border-color:rgba(200,137,42,0.3);"
         >
           <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
             <div>
@@ -73,7 +78,7 @@ function formatEventTime(dateStr: string): string {
               >Today!</span>
 
               <p class="font-bold text-lg" style="color:var(--color-chalk-white);">{{ event.title }}</p>
-              <p style="color:var(--color-straw);">{{ formatEventDate(event.date) }}</p>
+              <p style="color:#C9A84C;">{{ formatEventDate(event.date) }}</p>
 
               <div v-if="event.endDate" style="color:rgba(242,240,235,0.8);font-size:0.95rem;">
                 {{ formatEventTime(event.date) }} – {{ formatEventTime(event.endDate) }}
@@ -91,12 +96,12 @@ function formatEventTime(dateStr: string): string {
       </ul>
 
       <!-- Hot Chocolate callout -->
-      <div class="mt-10 rounded-2xl p-6 border" style="background-color:var(--color-cream-warm);border-color:var(--color-border);">
+      <div class="mt-10 rounded-lg p-6 card-vintage" style="background-color:var(--color-denim);">
         <div class="flex items-start gap-4">
           <div class="text-3xl" aria-hidden="true">☕</div>
           <div>
-            <h3 class="mb-1" style="color:var(--color-brown);">Hot Chocolate Bar</h3>
-            <p style="color:var(--color-text-muted);">
+            <h3 class="mb-1" style="color:var(--color-mustard);">Hot Chocolate Bar</h3>
+            <p style="color:rgba(253,246,232,0.85);">
               Find us at the market and warm up with our Hot Chocolate Bar ($2). Made fresh alongside our signature cinnamon roasted nuts — the perfect cold-weather pairing.
             </p>
           </div>
@@ -105,17 +110,17 @@ function formatEventTime(dateStr: string): string {
 
       <!-- Contact info -->
       <div class="mt-8 text-center text-sm" style="color:var(--color-text-muted);">
-        <p>Questions? Call us at <a href="tel:5174109029" class="font-bold" style="color:var(--color-brown);">(517) 410-9029</a></p>
+        <p>Questions? Call us at <a href="tel:5174109029" class="font-bold" style="color:var(--color-denim);">(517) 410-9029</a></p>
         <p class="mt-1">Dimondale, Michigan</p>
       </div>
     </div>
 
-    <!-- Bottom CTA — can't make it to market? -->
-    <section class="px-4 py-12 text-center" style="background-color:var(--color-cream-dark);">
+    <!-- Bottom CTA -->
+    <section class="px-4 py-12 text-center" style="background:var(--gradient-hero);color:var(--color-text-inverse);">
       <div class="mx-auto" style="max-width:var(--container-sm);">
-        <h2 class="mb-3" style="color:var(--color-brown);">Can't Make It to the Market?</h2>
-        <p class="mb-6" style="color:var(--color-text-muted);">Order online and arrange pickup or local delivery.</p>
-        <NuxtLink to="/shop" class="font-bold px-8 py-3.5 rounded-full transition-colors" style="background-color:var(--color-orange);color:white;">
+        <h2 class="mb-3" style="color:var(--color-cream-light);">Can't Make It to the Market?</h2>
+        <p class="mb-6" style="color:rgba(253,246,232,0.8);">Order online and arrange pickup or local delivery.</p>
+        <NuxtLink to="/shop" class="font-bold px-8 py-3.5 rounded btn-vintage" style="background-color:var(--color-orange);color:white;">
           Order Online →
         </NuxtLink>
       </div>

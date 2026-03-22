@@ -72,9 +72,10 @@ useHead({
 <template>
   <div>
     <!-- Header -->
-    <section class="px-4 py-12 text-center" style="background-color:var(--color-cream-dark);">
+    <section class="px-4 py-14 text-center" style="background:var(--gradient-hero);color:var(--color-text-inverse);">
       <div class="mx-auto" style="max-width:var(--container-md);">
-        <h1 style="font-size:clamp(2rem,5vw,3rem);color:var(--color-brown);">Frequently Asked Questions</h1>
+        <p class="eyebrow mb-2" style="color:var(--color-mustard);">The Nut Barn</p>
+        <h1 style="font-size:clamp(2rem,5vw,3rem);color:var(--color-cream-light);">Frequently Asked Questions</h1>
       </div>
     </section>
 
@@ -83,8 +84,8 @@ useHead({
       <div class="flex justify-end mb-6">
         <button
           type="button"
-          class="text-sm font-bold transition-colors"
-          style="color:var(--color-brown);"
+          class="text-sm font-bold transition-colors btn-vintage px-4 py-2 rounded"
+          style="color:var(--color-denim);border:2px solid var(--color-denim);"
           @click="toggleAll"
         >
           {{ allOpen ? 'Collapse All' : 'Expand All' }}
@@ -96,12 +97,12 @@ useHead({
         <details
           v-for="(faq, i) in faqs"
           :key="i"
-          class="faq-item bg-white rounded-xl border overflow-hidden"
+          class="faq-item bg-white rounded-lg border overflow-hidden card-vintage"
           style="border-color:var(--color-border);"
         >
           <summary
             class="flex items-center justify-between px-5 py-4 cursor-pointer font-bold list-none"
-            style="color:var(--color-brown);font-family:var(--font-heading);"
+            style="color:var(--color-denim);font-family:var(--font-body);"
           >
             {{ faq.q }}
             <svg class="shrink-0 ml-2 transition-transform" style="width:20px;height:20px;details[open] & { transform:rotate(180deg); }" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
@@ -120,7 +121,7 @@ useHead({
       <!-- CTA -->
       <div class="mt-10 text-center">
         <p class="mb-4" style="color:var(--color-text-muted);">Have a question we didn't answer?</p>
-        <NuxtLink to="/contact" class="font-bold px-6 py-3 rounded-full transition-colors" style="background-color:var(--color-orange);color:white;">
+        <NuxtLink to="/contact" class="font-bold px-6 py-3 rounded btn-vintage" style="background-color:var(--color-orange);color:white;">
           Contact Us
         </NuxtLink>
       </div>

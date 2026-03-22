@@ -2,14 +2,14 @@
 
 **Business:** The Nut Barn LLC
 **Location:** Dimondale, Michigan
-**Contact:** thenutbarnllc@gmail.com | (517) 410-9029
+**Contact:** contact@thenutbarn.net | (517) 410-9029
 **Document version:** 1.3 — March 2026 (founding brief, brand visual identity added)
 
 ---
 
 ## Section 0 — Founding Brief
 
-*The original client email that started this project. Preserved verbatim as the authoritative source of brand voice, product data, and business intent.*
+_The original client email that started this project. Preserved verbatim as the authoritative source of brand voice, product data, and business intent._
 
 ---
 
@@ -17,7 +17,7 @@
 >
 > I just want something that we can post a schedule to so people can come out to us.. and make it so people can place and/or email orders for shipping with payment to square/Paypal/venmo.
 >
-> Our email address is thenutbarnllc@gmail.com — Dimondale Michigan — Phone 5174109029
+> Our email address is contact@thenutbarn.net — Dimondale Michigan — Phone 5174109029
 >
 > I'm not sure what you need to connect our payment methods but we have: Venmo @nutbarn / Square / PayPal
 >
@@ -34,6 +34,7 @@
 > Our roasted nuts are vegan and gluten free and contain only FIVE simple ingredients! They go great on salad, ice cream, oatmeal, or just as a quick snack on the go!
 >
 > Prices are:
+>
 > - 6 oz - $10
 > - 8 oz - $15
 > - 15 oz - $23
@@ -43,13 +44,13 @@
 
 ### Brand Assets Received
 
-| Asset | Description | Location |
-|---|---|---|
+| Asset                  | Description                                                     | Location                          |
+| ---------------------- | --------------------------------------------------------------- | --------------------------------- |
 | Booth photo (exterior) | Full booth setup — yellow canopy, red banner, pine wood counter | `/docs/assets/booth-exterior.jpg` |
-| Booth photo (wide) | Wide shot showing hot chocolate bar cabinet on left | `/docs/assets/booth-wide.jpg` |
-| Booth detail | Close-up of chalkboard sign, wood grain, display case | `/docs/assets/booth-detail.jpg` |
-| Logo (white bg) | Mascot character on white background | `/docs/assets/logo-white.png` |
-| Logo (blue bg) | Mascot character on steel blue background | `/docs/assets/logo-blue.png` |
+| Booth photo (wide)     | Wide shot showing hot chocolate bar cabinet on left             | `/docs/assets/booth-wide.jpg`     |
+| Booth detail           | Close-up of chalkboard sign, wood grain, display case           | `/docs/assets/booth-detail.jpg`   |
+| Logo (white bg)        | Mascot character on white background                            | `/docs/assets/logo-white.png`     |
+| Logo (blue bg)         | Mascot character on steel blue background                       | `/docs/assets/logo-blue.png`      |
 
 ### Key Observations from Founding Brief
 
@@ -66,9 +67,11 @@
 ## Section 1 — Current Site Diagnosis
 
 ### What Exists
+
 The current site is a single-page vanilla HTML/CSS/JS application deployed on Netlify. It was purpose-built as a rapid prototype and has served as a proof of concept, but it is not a production-grade site.
 
 **Technical stack:**
+
 - `src/index.html` — single HTML file, all content inline
 - `src/css/styles.css` — hand-written vanilla CSS
 - `src/js/main.js` — cart logic, smooth scrolling, mailto checkout
@@ -77,20 +80,21 @@ The current site is a single-page vanilla HTML/CSS/JS application deployed on Ne
 
 ### Identified Issues
 
-| Issue | Severity | Notes |
-|---|---|---|
-| No CMS | Critical | Content changes require developer deployment |
-| Mailto checkout only | High | No real transaction capability |
-| No schema markup | High | Zero structured data; invisible to Google rich results |
-| Broken social links | High | Facebook and Instagram links are `href="#"` placeholders |
-| Single page, no real URLs | Medium | `/products`, `/contact`, etc. don't exist as indexable URLs |
-| No Google Business Profile optimization | Medium | No verified GBP with hours/photos |
-| No FAQ page | Medium | Lost opportunity for voice search and FAQPage schema |
-| No blog / content marketing | Medium | No organic traffic entry points beyond homepage |
-| Email hardcoded in source | Low | `thenutbarnllc@gmail.com` appears verbatim in `main.js` |
-| Alert-based cart feedback | Low | `alert()` calls for add-to-cart confirmations |
+| Issue                                   | Severity | Notes                                                       |
+| --------------------------------------- | -------- | ----------------------------------------------------------- |
+| No CMS                                  | Critical | Content changes require developer deployment                |
+| Mailto checkout only                    | High     | No real transaction capability                              |
+| No schema markup                        | High     | Zero structured data; invisible to Google rich results      |
+| Broken social links                     | High     | Facebook and Instagram links are `href="#"` placeholders    |
+| Single page, no real URLs               | Medium   | `/products`, `/contact`, etc. don't exist as indexable URLs |
+| No Google Business Profile optimization | Medium   | No verified GBP with hours/photos                           |
+| No FAQ page                             | Medium   | Lost opportunity for voice search and FAQPage schema        |
+| No blog / content marketing             | Medium   | No organic traffic entry points beyond homepage             |
+| Email hardcoded in source               | Low      | `contact@thenutbarn.net` appears verbatim in `main.js`      |
+| Alert-based cart feedback               | Low      | `alert()` calls for add-to-cart confirmations               |
 
 ### What Is Good
+
 - Authentic brand voice and story copy — keep every word
 - Real product data with correct names and prices
 - Working cart data model (`{id, name, price, quantity}` array)
@@ -102,18 +106,22 @@ The current site is a single-page vanilla HTML/CSS/JS application deployed on Ne
 ## Section 2 — Competitive Landscape
 
 ### Market Positioning
+
 The Nut Barn competes in the artisan/specialty food segment at farmer's markets and community events in Mid-Michigan. Key competitors operate at three levels:
 
 **Local / Direct:**
+
 - Other farmer's market food vendors (baked goods, kettle corn, jam)
 - Specialty snack vendors at Michigan festivals and Renaissance Fairs
 - Local gift basket shops (holiday season competition)
 
 **Regional / Online:**
+
 - Michigan-based artisan food brands with e-commerce (Zingerman's, Sanders)
 - Etsy food sellers shipping specialty roasted nuts
 
 **National:**
+
 - Nuts.com — large-scale e-commerce, SEO-dominant for generic nut queries
 - Planters, Fisher — mass market, not a direct competitor for artisan positioning
 - Local specialty food subscription boxes (Mouth.com, Goldbelly)
@@ -128,6 +136,7 @@ The Nut Barn competes in the artisan/specialty food segment at farmer's markets 
 6. **Vegan/GF badging** — prominent dietary callouts convert health-conscious shoppers quickly
 
 ### Differentiation Opportunities
+
 - **First-mover on local schema** — no Mid-Michigan competitor has FAQPage or LocalBusiness schema
 - **Nostalgia angle** — the 1980s mall nut stand story is unique and shareable
 - **Community event presence** — the event schedule is a recurring content asset
@@ -139,25 +148,27 @@ The Nut Barn competes in the artisan/specialty food segment at farmer's markets 
 
 ### Target Keywords
 
-| Intent | Keyword | Monthly Volume (est.) | Difficulty |
-|---|---|---|---|
-| Local transactional | cinnamon roasted nuts Lansing MI | 50–200 | Low |
-| Local navigational | farmer's market Dimondale | 100–500 | Low |
-| Gift transactional | roasted nuts gift Michigan | 50–200 | Low–Medium |
-| Health/diet | vegan gluten free snacks Michigan | 100–300 | Low |
-| Recipe/informational | cinnamon roasted nuts recipe | 500–2K | Medium |
-| Seasonal | holiday nut gift basket Michigan | 50–200 | Low |
-| Nostalgic | mall cinnamon roasted nuts | 200–500 | Low |
+| Intent               | Keyword                           | Monthly Volume (est.) | Difficulty |
+| -------------------- | --------------------------------- | --------------------- | ---------- |
+| Local transactional  | cinnamon roasted nuts Lansing MI  | 50–200                | Low        |
+| Local navigational   | farmer's market Dimondale         | 100–500               | Low        |
+| Gift transactional   | roasted nuts gift Michigan        | 50–200                | Low–Medium |
+| Health/diet          | vegan gluten free snacks Michigan | 100–300               | Low        |
+| Recipe/informational | cinnamon roasted nuts recipe      | 500–2K                | Medium     |
+| Seasonal             | holiday nut gift basket Michigan  | 50–200                | Low        |
+| Nostalgic            | mall cinnamon roasted nuts        | 200–500               | Low        |
 
 ### Horizon 1 — Technical Foundation (Months 1–2)
 
 **Schema Markup:**
+
 - `LocalBusiness` on every page (name, address, phone, hours, geo coordinates)
 - `Product` schema on `/shop` for each SKU (name, price, availability, description)
 - `FAQPage` schema on `/faq` (10–15 questions about ingredients, ordering, gifting, shipping)
 - `BreadcrumbList` on all inner pages
 
 **Technical fixes:**
+
 - Fix Facebook and Instagram social links (real URLs)
 - Add `robots.txt` and `sitemap.xml` (auto-generated by Nuxt via `nuxt-simple-sitemap` module)
 - Submit to Google Search Console, request indexing on all new URLs
@@ -165,6 +176,7 @@ The Nut Barn competes in the artisan/specialty food segment at farmer's markets 
 - Optimize `<title>` and `<meta description>` per page (currently all identical)
 
 **Google Business Profile:**
+
 - Verify and claim GBP for "The Nut Barn"
 - Add all photos (product, stand, events)
 - Set accurate hours (Saturday Holt Farmer's Market + event hours)
@@ -174,27 +186,32 @@ The Nut Barn competes in the artisan/specialty food segment at farmer's markets 
 ### Horizon 2 — Page Expansion (Months 2–4)
 
 **Homepage (`/`):**
+
 - H1: "Fresh Cinnamon Roasted Nuts — Lansing, Michigan"
 - Add trust signal strip: "Vegan • Gluten-Free • 5 Ingredients • Est. 2023"
 - Add customer review quotes (can be manually curated initially)
 - Add "Find Us" schedule strip above fold for local intent
 
 **Products (`/shop`):**
+
 - Expand each product description (ingredients, best uses, serving suggestions)
 - Add dietary badge icons (vegan leaf, GF symbol)
 - Add "Great for:" callouts (salads, ice cream, gifts)
 
 **Story (`/our-story`):**
+
 - Use full 5-paragraph story verbatim — it's already excellent
 - Add brand values section: Family Business, Community Focus, Simple Ingredients
 - Add vegan/GF certification callout
 
 **FAQ (`/faq`):**
+
 - 15 questions covering: ingredients, allergens, ordering, shipping, gifting, events, payment
 - Full FAQPage JSON-LD
 - Target voice search ("Hey Google, is The Nut Barn vegan?")
 
 **Find Us (`/find-us`):**
+
 - Holt Farmer's Market permanent slot with Google Map embed
 - Dynamic event list from WordPress CMS
 - "Suggest an Event" CTA for organizers
@@ -203,19 +220,20 @@ The Nut Barn competes in the artisan/specialty food segment at farmer's markets 
 
 **Blog content plan (`/blog`):**
 
-| Post title | Category | Schema |
-|---|---|---|
-| 5 Ways to Use Cinnamon Roasted Nuts (Beyond Snacking) | Recipe | Recipe |
-| The Perfect Holiday Gift for People Who Have Everything | Gift Guide | Article |
-| How We Got Started: The Nut Barn Story | Brand | Article |
-| Cinnamon Roasted Nuts on Ice Cream — Our Favorite Topping | Recipe | Recipe |
-| Top 5 Reasons to Visit Holt Farmer's Market | Local | Article |
-| The History of Cinnamon Roasted Nuts (and Why We Brought Them Back) | Nostalgia | Article |
-| Vegan Snacks at Michigan Farmer's Markets — A Guide | Dietary | Article |
-| DIY Gift Basket Ideas Using Roasted Nuts | Gift Guide | Article |
-| Our Booth at [Event Name] — What to Expect | Event Recap | Event |
+| Post title                                                          | Category    | Schema  |
+| ------------------------------------------------------------------- | ----------- | ------- |
+| 5 Ways to Use Cinnamon Roasted Nuts (Beyond Snacking)               | Recipe      | Recipe  |
+| The Perfect Holiday Gift for People Who Have Everything             | Gift Guide  | Article |
+| How We Got Started: The Nut Barn Story                              | Brand       | Article |
+| Cinnamon Roasted Nuts on Ice Cream — Our Favorite Topping           | Recipe      | Recipe  |
+| Top 5 Reasons to Visit Holt Farmer's Market                         | Local       | Article |
+| The History of Cinnamon Roasted Nuts (and Why We Brought Them Back) | Nostalgia   | Article |
+| Vegan Snacks at Michigan Farmer's Markets — A Guide                 | Dietary     | Article |
+| DIY Gift Basket Ideas Using Roasted Nuts                            | Gift Guide  | Article |
+| Our Booth at [Event Name] — What to Expect                          | Event Recap | Event   |
 
 **Off-page tactics:**
+
 - Submit to Michigan artisan food directories
 - Request features on local food blogs (MLive, Lansing State Journal food section)
 - Lansing/Dimondale local Facebook group participation
@@ -228,14 +246,15 @@ The Nut Barn competes in the artisan/specialty food segment at farmer's markets 
 
 ### Carry Forward
 
-| Element | Rationale |
-|---|---|
-| Brand colors (brown/orange/cream) | Distinctive, warm, food-appropriate |
-| Story-first narrative | Authentic voice is a competitive differentiator |
-| Product card layout | Familiar e-commerce pattern, good conversion structure |
-| Cart model `{id, name, price, quantity}` | Sound data model, migrated to Pinia store |
+| Element                                  | Rationale                                              |
+| ---------------------------------------- | ------------------------------------------------------ |
+| Brand colors (brown/orange/cream)        | Distinctive, warm, food-appropriate                    |
+| Story-first narrative                    | Authentic voice is a competitive differentiator        |
+| Product card layout                      | Familiar e-commerce pattern, good conversion structure |
+| Cart model `{id, name, price, quantity}` | Sound data model, migrated to Pinia store              |
 
 **Color palette (exact hex values to preserve):**
+
 ```
 --brown: #8B4513
 --orange: #ff6b35
@@ -247,28 +266,33 @@ The Nut Barn competes in the artisan/specialty food segment at farmer's markets 
 ### Improve
 
 **Navigation:**
+
 - Add sticky header on scroll (disappears on scroll down, reappears on scroll up)
 - Mobile hamburger menu (currently no mobile nav)
 - Sticky "Order Now" CTA button in header on mobile
 
 **Trust Signals (add above fold):**
+
 - "Vegan" and "Gluten-Free" icon badges on hero
 - "Est. 2023 • Family Business" callout
 - Star rating placeholder (manually set to 5★ initially)
 - Payment method icons (Square, PayPal, Venmo)
 
 **Mobile UX:**
+
 - Minimum 48px touch targets on all buttons
 - Cart drawer (slide-in from right) instead of modal overlay
 - Quantity controls: larger +/- buttons for thumb use
 - Sticky "Add to Cart" bar on product pages on mobile
 
 **Photography Plan:**
+
 - Phase 1: Use warm CSS gradient placeholders with product emoji (current approach)
 - Phase 2: Add real product photography — recommend renting a lightbox kit for $50 and shooting on a phone
 - Key shots needed: hero (nuts in a bowl, cinnamon sticks), product packaging, booth at market, couple (founders)
 
 **Conversion Improvements:**
+
 - Remove `alert()` for cart additions — use inline toast notification (Popover API)
 - Add "Continue Shopping" after add-to-cart instead of forcing cart open
 - "Place Order" opens a `<dialog>` form — never a mailto link
@@ -277,7 +301,7 @@ The Nut Barn competes in the artisan/specialty food segment at farmer's markets 
 
 ## Section 4b — Brand Visual Identity
 
-*This section supersedes the generic color palette in Section 4 and the earlier design review. It is grounded in the actual logo, booth photography, and founding brief received March 2026.*
+_This section supersedes the generic color palette in Section 4 and the earlier design review. It is grounded in the actual logo, booth photography, and founding brief received March 2026._
 
 ---
 
@@ -307,29 +331,30 @@ The Playfair Display recommendation from earlier generic reviews is **too refine
 
 The actual brand uses colors not in the original 5-token CSS set. The booth and logo together define the complete physical palette:
 
-| Token | Hex | Source | Usage |
-|---|---|---|---|
-| `brown` | `#8B4513` | Original CSS / nut body color | Primary, headings, borders |
-| `brown-dark` | `#5c2d0e` | Original CSS | Hover states, footer |
-| `brown-mid` | `#654321` | Booth wood shadow | Nav bar, secondary surfaces |
-| `orange` | `#ff6b35` | Original CSS | CTAs, price display |
-| `orange-hover` | `#e85d29` | — | Hover on orange |
-| `barn-red` | `#9B1B1B` | Booth banner + logo barn | Section accents, badge backgrounds |
-| `straw` | `#C9A84C` | Logo cowboy hat | Warm accent, highlight |
-| `denim` | `#3B6EA5` | Logo overalls | Accent only — use sparingly |
-| `pine-wood` | `#C8892A` | Booth pine counter | Texture accent, warm border |
-| `chalkboard` | `#1C1C1C` | Booth chalkboard | Schedule section bg, contrast surfaces |
-| `chalk-white` | `#F2F0EB` | Chalk text color | Text on chalkboard surfaces |
-| `cream` | `#f8f6f0` | Original CSS | Page background |
-| `cream-dark` | `#ede9df` | Original CSS | Alternate section bg |
-| `cream-warm` | `#f4e4bc` | Booth ambient light | Story, testimonial backgrounds |
-| `text` | `#2d1a0e` | — | Body text (warmer than #333) |
-| `text-muted` | `#6b5a4e` | — | Captions, labels |
-| `success` | `#2d7d46` | — | Vegan/GF badges |
-| `error` | `#c0392b` | — | Error states |
-| `border` | `#d9cfc4` | — | Default borders |
+| Token          | Hex       | Source                        | Usage                                  |
+| -------------- | --------- | ----------------------------- | -------------------------------------- |
+| `brown`        | `#8B4513` | Original CSS / nut body color | Primary, headings, borders             |
+| `brown-dark`   | `#5c2d0e` | Original CSS                  | Hover states, footer                   |
+| `brown-mid`    | `#654321` | Booth wood shadow             | Nav bar, secondary surfaces            |
+| `orange`       | `#ff6b35` | Original CSS                  | CTAs, price display                    |
+| `orange-hover` | `#e85d29` | —                             | Hover on orange                        |
+| `barn-red`     | `#9B1B1B` | Booth banner + logo barn      | Section accents, badge backgrounds     |
+| `straw`        | `#C9A84C` | Logo cowboy hat               | Warm accent, highlight                 |
+| `denim`        | `#3B6EA5` | Logo overalls                 | Accent only — use sparingly            |
+| `pine-wood`    | `#C8892A` | Booth pine counter            | Texture accent, warm border            |
+| `chalkboard`   | `#1C1C1C` | Booth chalkboard              | Schedule section bg, contrast surfaces |
+| `chalk-white`  | `#F2F0EB` | Chalk text color              | Text on chalkboard surfaces            |
+| `cream`        | `#f8f6f0` | Original CSS                  | Page background                        |
+| `cream-dark`   | `#ede9df` | Original CSS                  | Alternate section bg                   |
+| `cream-warm`   | `#f4e4bc` | Booth ambient light           | Story, testimonial backgrounds         |
+| `text`         | `#2d1a0e` | —                             | Body text (warmer than #333)           |
+| `text-muted`   | `#6b5a4e` | —                             | Captions, labels                       |
+| `success`      | `#2d7d46` | —                             | Vegan/GF badges                        |
+| `error`        | `#c0392b` | —                             | Error states                           |
+| `border`       | `#d9cfc4` | —                             | Default borders                        |
 
 **Key additions vs. original palette:**
+
 - `barn-red` — the physical booth banner color; grounding the brand in the actual visual identity
 - `straw` — from the cowboy hat; warm golden accent
 - `denim` — from overalls; sparingly for contrast badges or callouts
@@ -344,27 +369,31 @@ The hand-lettered logo means the web typography should **complement without comp
 
 **Recommended stack:**
 
-| Role | Font | Weight | Source |
-|---|---|---|---|
-| Display / Hero H1 | Alfa Slab One | 400 (only weight) | Google Fonts |
-| Headings H2–H3 | Josefin Slab | 600, 700 | Google Fonts |
-| Body | Lato | 400, 700 | Google Fonts |
-| Chalkboard elements | Caveat | 400, 700 | Google Fonts |
+| Role                | Font          | Weight            | Source       |
+| ------------------- | ------------- | ----------------- | ------------ |
+| Display / Hero H1   | Alfa Slab One | 400 (only weight) | Google Fonts |
+| Headings H2–H3      | Josefin Slab  | 600, 700          | Google Fonts |
+| Body                | Lato          | 400, 700          | Google Fonts |
+| Chalkboard elements | Caveat        | 400, 700          | Google Fonts |
 
 **Why these choices:**
 
 - **Alfa Slab One** — a bold slab serif with a Western/farmhouse personality that aligns with the cowboy hat and barn. Used only for the hero headline. Distinctive, immediately readable.
 - **Josefin Slab** — a geometric slab serif. Clean enough for subheadings, warm enough to match the brand. The slab serif category echoes the handcrafted visual language without being novelty.
 - **Lato** — humanist sans-serif body text. Warm, approachable, high legibility. Keeps body copy professional and readable.
-- **Caveat** — a handwritten Google Font used *only* for chalkboard-styled UI elements (market schedule, "today's special" callouts). Evokes the physical chalkboard signs without making headings illegible.
+- **Caveat** — a handwritten Google Font used _only_ for chalkboard-styled UI elements (market schedule, "today's special" callouts). Evokes the physical chalkboard signs without making headings illegible.
 
 **Do NOT use:** Playfair Display (too refined/editorial for this mascot), Lobster (cliché), any script font for headings.
 
 **Google Fonts import:**
+
 ```html
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Josefin+Slab:wght@600;700&family=Lato:wght@400;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Josefin+Slab:wght@600;700&family=Lato:wght@400;700&family=Caveat:wght@400;700&display=swap"
+  rel="stylesheet"
+/>
 ```
 
 **Payload:** ~60–70KB woff2 total across all four families.
@@ -376,23 +405,26 @@ The hand-lettered logo means the web typography should **complement without comp
 The physical booth uses chalkboard-on-wood as the primary price/menu display. This is a strong brand asset that should translate to specific UI contexts on the website — **not** the entire site aesthetic.
 
 **Use chalkboard styling for:**
+
 - Market schedule section on `/find-us` — dark chalkboard background, `Caveat` font for event names and dates
 - "Coming to your neighborhood" callouts
 - "Today's Special" or seasonal badges
 - The schedule strip on the homepage `/` find-us section
 
 **Do NOT use chalkboard styling for:**
+
 - Product cards (readability loss)
 - Body copy
 - Navigation
 - Form elements
 
 **CSS implementation:**
+
 ```css
 .chalkboard {
   background: var(--color-chalkboard);
   color: var(--color-chalk-white);
-  font-family: var(--font-chalk);  /* Caveat */
+  font-family: var(--font-chalk); /* Caveat */
   border: 3px solid var(--color-pine-wood);
   border-radius: var(--radius-md);
   padding: var(--spacing-6) var(--spacing-8);
@@ -407,15 +439,15 @@ The physical booth uses chalkboard-on-wood as the primary price/menu display. Th
 
 The nut farmer character must be a first-class web asset, not just an image in the footer.
 
-| Location | Usage | Format |
-|---|---|---|
-| Header / Nav | Small nut head icon (cropped mascot) as secondary logo mark | SVG |
-| Favicon | Nut head + hat silhouette, 32×32 | SVG/ICO |
-| 404 Page | Full mascot, pointing at "We couldn't find that page..." | SVG or PNG |
-| Empty cart state | Mascot with pitchfork, empty basket | SVG or PNG |
-| Order success state | Mascot giving thumbs up / winking | SVG or PNG |
-| Homepage hero | Mascot as a large decorative element alongside the hero CTA | PNG (transparent) |
-| Product section divider | Mascot silhouette as a section break | SVG |
+| Location                | Usage                                                       | Format            |
+| ----------------------- | ----------------------------------------------------------- | ----------------- |
+| Header / Nav            | Small nut head icon (cropped mascot) as secondary logo mark | SVG               |
+| Favicon                 | Nut head + hat silhouette, 32×32                            | SVG/ICO           |
+| 404 Page                | Full mascot, pointing at "We couldn't find that page..."    | SVG or PNG        |
+| Empty cart state        | Mascot with pitchfork, empty basket                         | SVG or PNG        |
+| Order success state     | Mascot giving thumbs up / winking                           | SVG or PNG        |
+| Homepage hero           | Mascot as a large decorative element alongside the hero CTA | PNG (transparent) |
+| Product section divider | Mascot silhouette as a section break                        | SVG               |
 
 **SVG conversion:** The logo should be traced to SVG so it scales to any size and downloads as a single HTTP request. Commission this from a vector artist or use the existing PNG as a reference for the favicon.
 
@@ -427,16 +459,16 @@ The nut farmer character must be a first-class web asset, not just an image in t
 
 These phrases from the physical booth and founding brief are canonical brand copy:
 
-| Copy | Source | Web Usage |
-|---|---|---|
-| **"WARNING: PRODUCT MAY BE HABIT FORMING"** | Display case sticker | Hero subtext, product badge, meta description |
-| **"Cinnamon Glazed Nuts • Hot Coffee • Water"** | Booth banner | Find us / booth description |
-| **"Roasted Nuts $5.00"** | Chalkboard (market price) | Context: market prices may differ from online prices |
-| **"Hot Chocolate Bar"** | Cabinet sign | /find-us page, homepage trust strip |
-| **"Oh.. I am SO glad you're here!"** | Founding brief | Homepage hero pull quote from a customer |
-| **"People would follow the smell"** | Founding brief | Homepage hero subheadline |
-| **"FIVE simple ingredients"** | Founding brief | Product badge, trust strip |
-| **"Never told me 'No' in 26 years"** | Founding brief | Our Story page, humanizing detail |
+| Copy                                            | Source                    | Web Usage                                            |
+| ----------------------------------------------- | ------------------------- | ---------------------------------------------------- |
+| **"WARNING: PRODUCT MAY BE HABIT FORMING"**     | Display case sticker      | Hero subtext, product badge, meta description        |
+| **"Cinnamon Glazed Nuts • Hot Coffee • Water"** | Booth banner              | Find us / booth description                          |
+| **"Roasted Nuts $5.00"**                        | Chalkboard (market price) | Context: market prices may differ from online prices |
+| **"Hot Chocolate Bar"**                         | Cabinet sign              | /find-us page, homepage trust strip                  |
+| **"Oh.. I am SO glad you're here!"**            | Founding brief            | Homepage hero pull quote from a customer             |
+| **"People would follow the smell"**             | Founding brief            | Homepage hero subheadline                            |
+| **"FIVE simple ingredients"**                   | Founding brief            | Product badge, trust strip                           |
+| **"Never told me 'No' in 26 years"**            | Founding brief            | Our Story page, humanizing detail                    |
 
 ---
 
@@ -445,6 +477,7 @@ These phrases from the physical booth and founding brief are canonical brand cop
 The booth banner says "HOT COFFEE" but the chalkboard says "HOT Chocolate $2.00" and the cabinet says "Hot Chocolate Bar." Hot Chocolate is the signature warm drink pairing. **The website should lead with Hot Chocolate, not Hot Coffee.**
 
 Hot Chocolate appears in:
+
 - The founding brief as a product that brings regulars back
 - The Gift Basket product description (includes Hot Chocolate mixes)
 - The booth's dedicated "Hot Chocolate Bar" station
@@ -462,130 +495,137 @@ The complete `@theme` block incorporating actual booth and logo colors:
 
 @theme {
   /* FONTS */
-  --font-display: 'Alfa Slab One', 'Georgia', serif;
-  --font-heading: 'Josefin Slab', 'Georgia', serif;
-  --font-body:    'Lato', system-ui, -apple-system, sans-serif;
-  --font-chalk:   'Caveat', cursive;
-  --font-mono:    ui-monospace, 'Courier New', monospace;
+  --font-display: "Alfa Slab One", "Georgia", serif;
+  --font-heading: "Josefin Slab", "Georgia", serif;
+  --font-body: "Lato", system-ui, -apple-system, sans-serif;
+  --font-chalk: "Caveat", cursive;
+  --font-mono: ui-monospace, "Courier New", monospace;
 
   /* COLORS — Brand Core */
-  --color-brown:          #8B4513;
-  --color-brown-dark:     #5c2d0e;
-  --color-brown-mid:      #654321;
-  --color-orange:         #ff6b35;
-  --color-orange-hover:   #e85d29;
+  --color-brown: #8b4513;
+  --color-brown-dark: #5c2d0e;
+  --color-brown-mid: #654321;
+  --color-orange: #ff6b35;
+  --color-orange-hover: #e85d29;
 
   /* COLORS — Physical Brand (from booth + logo) */
-  --color-barn-red:       #9B1B1B;
-  --color-straw:          #C9A84C;
-  --color-denim:          #3B6EA5;
-  --color-pine-wood:      #C8892A;
-  --color-chalkboard:     #1C1C1C;
-  --color-chalk-white:    #F2F0EB;
+  --color-barn-red: #9b1b1b;
+  --color-straw: #c9a84c;
+  --color-denim: #3b6ea5;
+  --color-pine-wood: #c8892a;
+  --color-chalkboard: #1c1c1c;
+  --color-chalk-white: #f2f0eb;
 
   /* COLORS — Surfaces */
-  --color-cream:          #f8f6f0;
-  --color-cream-dark:     #ede9df;
-  --color-cream-warm:     #f4e4bc;
+  --color-cream: #f8f6f0;
+  --color-cream-dark: #ede9df;
+  --color-cream-warm: #f4e4bc;
 
   /* COLORS — Text */
-  --color-text:           #2d1a0e;
-  --color-text-muted:     #6b5a4e;
-  --color-text-inverse:   #ffffff;
+  --color-text: #2d1a0e;
+  --color-text-muted: #6b5a4e;
+  --color-text-inverse: #ffffff;
 
   /* COLORS — Semantic */
-  --color-success:        #2d7d46;
-  --color-success-light:  #e8f5ed;
-  --color-error:          #c0392b;
-  --color-error-light:    #fdf0ee;
+  --color-success: #2d7d46;
+  --color-success-light: #e8f5ed;
+  --color-error: #c0392b;
+  --color-error-light: #fdf0ee;
 
   /* COLORS — UI */
-  --color-border:         #d9cfc4;
-  --color-border-strong:  #b5a89a;
-  --color-focus:          #8B4513;
+  --color-border: #d9cfc4;
+  --color-border-strong: #b5a89a;
+  --color-focus: #8b4513;
 
   /* FONT SIZES */
-  --font-size-xs:      0.75rem;
-  --font-size-sm:      0.875rem;
-  --font-size-base:    1rem;
-  --font-size-lg:      1.125rem;
-  --font-size-xl:      1.375rem;
-  --font-size-2xl:     1.75rem;
-  --font-size-3xl:     2.25rem;
-  --font-size-4xl:     2.75rem;
-  --font-size-5xl:     3.5rem;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.375rem;
+  --font-size-2xl: 1.75rem;
+  --font-size-3xl: 2.25rem;
+  --font-size-4xl: 2.75rem;
+  --font-size-5xl: 3.5rem;
   --font-size-display: 4.5rem;
 
   /* LINE HEIGHTS */
-  --line-height-tight:   1.25;
-  --line-height-snug:    1.4;
-  --line-height-base:    1.7;
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.4;
+  --line-height-base: 1.7;
   --line-height-relaxed: 1.8;
 
   /* SPACING (4px grid) */
-  --spacing-1:   0.25rem;
-  --spacing-2:   0.5rem;
-  --spacing-3:   0.75rem;
-  --spacing-4:   1rem;
-  --spacing-6:   1.5rem;
-  --spacing-8:   2rem;
-  --spacing-10:  2.5rem;
-  --spacing-12:  3rem;
-  --spacing-16:  4rem;
-  --spacing-20:  5rem;
-  --spacing-24:  6rem;
-  --spacing-32:  8rem;
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+  --spacing-32: 8rem;
 
   /* BORDER RADIUS */
-  --radius-sm:   4px;
-  --radius-md:   8px;
-  --radius-lg:   12px;
-  --radius-xl:   16px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
   --radius-full: 9999px;
 
   /* SHADOWS — warm-tinted */
-  --shadow-sm:   0 1px 3px rgba(45, 26, 14, 0.08);
-  --shadow-md:   0 4px 12px rgba(45, 26, 14, 0.10);
-  --shadow-lg:   0 8px 24px rgba(45, 26, 14, 0.12);
-  --shadow-xl:   0 16px 48px rgba(45, 26, 14, 0.15);
+  --shadow-sm: 0 1px 3px rgba(45, 26, 14, 0.08);
+  --shadow-md: 0 4px 12px rgba(45, 26, 14, 0.1);
+  --shadow-lg: 0 8px 24px rgba(45, 26, 14, 0.12);
+  --shadow-xl: 0 16px 48px rgba(45, 26, 14, 0.15);
 
   /* TRANSITIONS */
-  --duration-quick:    150ms;
-  --duration-base:     250ms;
+  --duration-quick: 150ms;
+  --duration-base: 250ms;
   --duration-moderate: 350ms;
-  --duration-slow:     500ms;
-  --ease-out:   cubic-bezier(0.0, 0.0, 0.2, 1);
-  --ease-in:    cubic-bezier(0.4, 0.0, 1.0, 1);
-  --ease-inout: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --duration-slow: 500ms;
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-inout: cubic-bezier(0.4, 0, 0.2, 1);
 
   /* LAYOUT */
-  --container-sm:  42rem;
-  --container-md:  48rem;
-  --container-lg:  72rem;
-  --container-xl:  80rem;
+  --container-sm: 42rem;
+  --container-md: 48rem;
+  --container-lg: 72rem;
+  --container-xl: 80rem;
 
   /* Z-INDEX */
-  --z-sticky:  100;
-  --z-drawer:  200;
-  --z-dialog:  300;
-  --z-toast:   400;
+  --z-sticky: 100;
+  --z-drawer: 200;
+  --z-dialog: 300;
+  --z-toast: 400;
 
   /* GRADIENTS */
-  --gradient-product: linear-gradient(135deg, #f4e4bc 0%, #C8892A 60%, #8B4513 100%);
-  --gradient-hero:    linear-gradient(135deg, #8B4513 0%, #C8892A 100%);
-  --gradient-barn:    linear-gradient(135deg, #9B1B1B 0%, #5c2d0e 100%);
+  --gradient-product: linear-gradient(
+    135deg,
+    #f4e4bc 0%,
+    #c8892a 60%,
+    #8b4513 100%
+  );
+  --gradient-hero: linear-gradient(135deg, #8b4513 0%, #c8892a 100%);
+  --gradient-barn: linear-gradient(135deg, #9b1b1b 0%, #5c2d0e 100%);
 }
 
 /* Component-level custom properties */
 :root {
   --header-height: 64px;
-  --drawer-width:  400px;
-  --touch-target:  48px;
+  --drawer-width: 400px;
+  --touch-target: 48px;
 }
 
 /* Motion accessibility */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
@@ -605,13 +645,13 @@ Every package added is future maintenance. Before reaching for a library, ask: c
 
 **Native platform first.**
 
-| Need | Native solution | Ask before using |
-|---|---|---|
-| Slide-in drawer | CSS `translate` + `transition` + `popover` | JS animation library |
-| Modal / dialog | `<dialog>` + `showModal()` | Vue modal component |
-| Toast notification | Popover API | Toast plugin |
-| Accordion (FAQ) | `<details>` / `<summary>` | Collapse component |
-| Toggle / tab | CSS `:has()` or minimal JS | Framework state |
+| Need               | Native solution                            | Ask before using     |
+| ------------------ | ------------------------------------------ | -------------------- |
+| Slide-in drawer    | CSS `translate` + `transition` + `popover` | JS animation library |
+| Modal / dialog     | `<dialog>` + `showModal()`                 | Vue modal component  |
+| Toast notification | Popover API                                | Toast plugin         |
+| Accordion (FAQ)    | `<details>` / `<summary>`                  | Collapse component   |
+| Toggle / tab       | CSS `:has()` or minimal JS                 | Framework state      |
 
 **Framework features only when required.**
 Use Vue reactivity, composables, and components only where native JS or CSS genuinely cannot do the job. When in doubt, present options and ask.
@@ -628,21 +668,21 @@ This project is the template for future tinkrLAB projects. Patterns set here car
 
 ### Technology Stack
 
-| Layer | Choice | Version | Rationale |
-|---|---|---|---|
-| Frontend framework | Nuxt | 4.3.1 | Vue-native SSG + ISR, file-based routing, excellent Vercel integration |
-| UI layer | Vue | 3.5 | Composition API, `<script setup>`, SFCs — reactive and ergonomic |
-| Styling | Tailwind CSS | v4.2 | CSS-native config (`@theme`), no config file, 5× faster builds |
-| State management | Pinia | latest | Official Vue store for shared reactive state; devtools built-in |
-| CMS | WordPress headless (WPGraphQL) | — | Client self-service, familiar admin, free plugin ecosystem |
-| Hosting (frontend) | Vercel | — | Free tier, automatic preview deploys, edge network |
-| Hosting (WordPress) | Cloudways or Kinsta (~$10/month) | — | Managed WP, one-click staging |
-| Transactional email | Resend API | — | Reliable delivery, clean API — replaces mailto for order confirmations |
-| Order DB (future) | Supabase | — | Postgres + REST/realtime; enables order history, reports, reminders |
-| Payments (future) | Stripe | — | Phase 3; server route stubbed until ready |
-| Type safety | TypeScript | 5.x | Prevents runtime errors, better DX |
-| Linting | ESLint + Prettier | — | Code quality, auto-format |
-| Package manager | pnpm | — | Fast, disk-efficient |
+| Layer               | Choice                           | Version | Rationale                                                              |
+| ------------------- | -------------------------------- | ------- | ---------------------------------------------------------------------- |
+| Frontend framework  | Nuxt                             | 4.3.1   | Vue-native SSG + ISR, file-based routing, excellent Vercel integration |
+| UI layer            | Vue                              | 3.5     | Composition API, `<script setup>`, SFCs — reactive and ergonomic       |
+| Styling             | Tailwind CSS                     | v4.2    | CSS-native config (`@theme`), no config file, 5× faster builds         |
+| State management    | Pinia                            | latest  | Official Vue store for shared reactive state; devtools built-in        |
+| CMS                 | WordPress headless (WPGraphQL)   | —       | Client self-service, familiar admin, free plugin ecosystem             |
+| Hosting (frontend)  | Vercel                           | —       | Free tier, automatic preview deploys, edge network                     |
+| Hosting (WordPress) | Cloudways or Kinsta (~$10/month) | —       | Managed WP, one-click staging                                          |
+| Transactional email | Resend API                       | —       | Reliable delivery, clean API — replaces mailto for order confirmations |
+| Order DB (future)   | Supabase                         | —       | Postgres + REST/realtime; enables order history, reports, reminders    |
+| Payments (future)   | Stripe                           | —       | Phase 3; server route stubbed until ready                              |
+| Type safety         | TypeScript                       | 5.x     | Prevents runtime errors, better DX                                     |
+| Linting             | ESLint + Prettier                | —       | Code quality, auto-format                                              |
+| Package manager     | pnpm                             | —       | Fast, disk-efficient                                                   |
 
 ### Key Nuxt 4 File Conventions
 
@@ -690,10 +730,10 @@ Tailwind v4 uses CSS-native configuration — no `tailwind.config.js`. Brand the
 @import "tailwindcss";
 
 @theme {
-  --color-brown:      #8B4513;
+  --color-brown: #8b4513;
   --color-brown-dark: #5c2d0e;
-  --color-orange:     #ff6b35;
-  --color-cream:      #f8f6f0;
+  --color-orange: #ff6b35;
+  --color-cream: #f8f6f0;
   --color-cream-dark: #ede9df;
 }
 ```
@@ -746,24 +786,26 @@ Stripe payment flow
 
 **Order form fields** (presented in a `<dialog>` triggered from the cart drawer):
 
-| Field | Required | Notes |
-|---|---|---|
-| Full name | Yes | |
-| Email address | Yes | Validated; receives order confirmation via Resend |
-| Phone number | Yes | Required for coordination regardless of fulfillment method |
-| Fulfillment | Yes | Radio: "Pick up" or "Deliver to me" |
-| Delivery address | Conditional | Shown and required only when "Deliver to me" is selected |
-| Payment | Yes | Radio: "Call me to arrange payment" or "Pay on pickup/delivery" |
-| Order summary | Auto | Populated from Pinia cart state, read-only |
-| Notes | No | Allergies, gift message, special requests |
+| Field            | Required    | Notes                                                           |
+| ---------------- | ----------- | --------------------------------------------------------------- |
+| Full name        | Yes         |                                                                 |
+| Email address    | Yes         | Validated; receives order confirmation via Resend               |
+| Phone number     | Yes         | Required for coordination regardless of fulfillment method      |
+| Fulfillment      | Yes         | Radio: "Pick up" or "Deliver to me"                             |
+| Delivery address | Conditional | Shown and required only when "Deliver to me" is selected        |
+| Payment          | Yes         | Radio: "Call me to arrange payment" or "Pay on pickup/delivery" |
+| Order summary    | Auto        | Populated from Pinia cart state, read-only                      |
+| Notes            | No          | Allergies, gift message, special requests                       |
 
 **Phase 1 — Now (Resend, no database)**
 Cart → "Place Order" → `<dialog>` order form → `POST /api/orders` →
+
 - Resend: order details + fulfillment + payment preference to `CONTACT_EMAIL`
 - Resend: confirmation email to customer ("We'll be in touch to confirm your order")
 
 **Phase 2 — Future (Supabase + Resend)**
 Same form, `POST /api/orders` also writes to Supabase `orders` table:
+
 - Enables order history, status tracking, reporting, automated follow-up
 - Site owner can query/export from Supabase dashboard without developer involvement
 
@@ -773,22 +815,25 @@ Payment collected at order submission via Stripe. Order written to Supabase only
 ### WordPress Custom Post Types
 
 **Products** (`product`)
+
 - Fields: name, slug, price, weight_oz, short_description, long_description, dietary_tags[], featured_image
 
 **Events** (`event`)
+
 - Fields: title, date, location_name, location_address, description, external_link, is_recurring, recurring_day, recurring_time
 
 **Blog Posts** (built-in WordPress `post` type)
+
 - Standard WP fields + custom: recipe_ingredients[], recipe_steps[], post_category (recipe/gift-guide/story/event-recap)
 
 ### Environments
 
-| Variable | Local (`.env`) | Dev (Vercel Preview) | Prod (Vercel) |
-|---|---|---|---|
-| `CONTACT_EMAIL` | `kevin@yourdevmail.com` | `test@nutbarn.dev` | `thenutbarnllc@gmail.com` |
-| `WORDPRESS_API_URL` | `http://nutbarn-local.local/graphql` | `https://staging-cms.nutbarn.com/graphql` | `https://cms.nutbarn.com/graphql` |
-| `STRIPE_SECRET_KEY` | `sk_test_...` | `sk_test_...` | `sk_live_...` |
-| `NUXT_PUBLIC_STRIPE_KEY` | `pk_test_...` | `pk_test_...` | `pk_live_...` |
+| Variable                 | Local (`.env`)                       | Dev (Vercel Preview)                      | Prod (Vercel)                     |
+| ------------------------ | ------------------------------------ | ----------------------------------------- | --------------------------------- |
+| `CONTACT_EMAIL`          | `kevin@yourdevmail.com`              | `test@nutbarn.dev`                        | `contact@thenutbarn.net`          |
+| `WORDPRESS_API_URL`      | `http://nutbarn-local.local/graphql` | `https://staging-cms.nutbarn.com/graphql` | `https://cms.nutbarn.com/graphql` |
+| `STRIPE_SECRET_KEY`      | `sk_test_...`                        | `sk_test_...`                             | `sk_live_...`                     |
+| `NUXT_PUBLIC_STRIPE_KEY` | `pk_test_...`                        | `pk_test_...`                             | `pk_live_...`                     |
 
 **Key principle:** No email address, API URL, or secret key is hardcoded anywhere in source. All are environment-driven. Public runtime config goes through `nuxt.config.ts` `runtimeConfig.public`.
 
@@ -801,6 +846,7 @@ Payment collected at order submission via Stripe. Order written to Supabase only
 **Purpose:** Convert visitors from search and word-of-mouth into buyers or followers.
 
 **Must-have content:**
+
 - Hero: H1 with primary keyword, "Shop Now" CTA, trust badge strip (Vegan • GF • 5 Ingredients)
 - Product preview: 4 product cards with add-to-cart (same as current)
 - Story teaser: 2-sentence excerpt from Our Story with "Read More →" link
@@ -817,6 +863,7 @@ Payment collected at order submission via Stripe. Order written to Supabase only
 **Purpose:** Full product catalog with cart — primary conversion page.
 
 **Must-have content:**
+
 - All 4 products with full descriptions, sizes, prices
 - Dietary badges (Vegan, Gluten-Free) per product
 - Quantity controls (larger touch targets than current)
@@ -834,6 +881,7 @@ Payment collected at order submission via Stripe. Order written to Supabase only
 **Purpose:** Build emotional connection, increase trust, improve branded search.
 
 **Must-have content:**
+
 - Full 5-paragraph story (preserved verbatim from current site)
 - Brand values section: Family Business, Community First, Simple Ingredients, Vegan & Gluten-Free
 - Founder photo placeholder (warm gradient card)
@@ -848,6 +896,7 @@ Payment collected at order submission via Stripe. Order written to Supabase only
 **Purpose:** Drive in-person visits, showcase community presence.
 
 **Must-have content:**
+
 - Holt Farmer's Market: Saturday 9am–2pm, Holt MI, Google Map embed
 - Dynamic events list (from WordPress `event` CPT)
 - "Suggest an Event" CTA (links to contact form with pre-filled subject)
@@ -862,6 +911,7 @@ Payment collected at order submission via Stripe. Order written to Supabase only
 **Purpose:** Inquiries, wholesale leads, event booking requests.
 
 **Must-have content:**
+
 - Contact form: name, email, message, submit
 - Form submits to `/api/contact` → sends email to `CONTACT_EMAIL`
 - Phone number and email displayed
@@ -874,6 +924,7 @@ Payment collected at order submission via Stripe. Order written to Supabase only
 **Purpose:** Capture voice search, reduce support emails, rank for long-tail queries.
 
 **Question categories:**
+
 - Ingredients & Dietary (vegan, GF, allergens, what are the 5 ingredients)
 - Ordering & Shipping (can I order online, do you ship nationwide, how long)
 - Events & Schedule (where is the farmer's market, do you take requests)
@@ -889,6 +940,7 @@ Payment collected at order submission via Stripe. Order written to Supabase only
 **Purpose:** SEO entry points, recipe sharing, seasonal gift guide content.
 
 **Structure:**
+
 - Blog index: card grid of posts (from WordPress `post` type)
 - Individual post: `/blog/[slug]` with full content, recipe schema where applicable
 - Categories: Recipes, Gift Guides, Behind the Scenes, Community Events
@@ -902,6 +954,7 @@ Payment collected at order submission via Stripe. Order written to Supabase only
 **Purpose:** Capture B2B leads (restaurants, gift shops, event planners).
 
 **Must-have content:**
+
 - Brief intro: "We offer bulk pricing for businesses and large orders"
 - Simple inquiry form: name, business name, email, estimated quantity, message
 - Form submits to `/api/contact` with wholesale tag in subject
@@ -911,7 +964,8 @@ Payment collected at order submission via Stripe. Order written to Supabase only
 ## Section 7 — Implementation Phases
 
 ### Phase 0 — Quick Wins on Current Site (Week 1)
-*Goal: Improve SEO baseline without waiting for full rebuild*
+
+_Goal: Improve SEO baseline without waiting for full rebuild_
 
 - [ ] Add `LocalBusiness` JSON-LD to current `index.html` `<head>`
 - [ ] Fix Facebook link (real URL or remove)
@@ -923,7 +977,8 @@ Payment collected at order submission via Stripe. Order written to Supabase only
 ---
 
 ### Phase 1 — Environment Setup (Weeks 1–2)
-*Goal: Working Nuxt 4 project on Vercel, WordPress CMS live locally*
+
+_Goal: Working Nuxt 4 project on Vercel, WordPress CMS live locally_
 
 - [ ] Initialize Nuxt 4 + Vue 3 + TypeScript project: `pnpm dlx nuxi@latest init`
 - [ ] Install Tailwind CSS v4 via `@tailwindcss/vite` plugin (no config file needed)
@@ -942,9 +997,11 @@ Payment collected at order submission via Stripe. Order written to Supabase only
 ---
 
 ### Phase 2 — Content Migration & Build (Weeks 2–5)
-*Goal: All pages built with real content, cart works, site is deployable*
+
+_Goal: All pages built with real content, cart works, site is deployable_
 
 **Week 2:**
+
 - [ ] Build `layouts/default.vue` — header + footer shell with `<NuxtPage />`
 - [ ] Build `app.vue` — root app with global styles and `<NuxtLayout />`
 - [ ] Build `pages/index.vue` — homepage with hero, products, story teaser, schedule strip
@@ -952,12 +1009,14 @@ Payment collected at order submission via Stripe. Order written to Supabase only
 - [ ] Build `components/CartDrawer.vue` + `composables/useCart.ts` (Pinia store)
 
 **Week 3:**
+
 - [ ] Build `pages/shop.vue` — full product catalog, cart integration
 - [ ] Build `pages/our-story.vue` — full story, brand values
 - [ ] Build `pages/find-us.vue` — static schedule + WordPress events
 - [ ] Build `lib/wordpress.ts` — mock data fallback + WPGraphQL fetch via `$fetch`
 
 **Week 4:**
+
 - [ ] Build `pages/contact.vue` — contact form
 - [ ] Build `server/api/contact.post.ts` — email dispatch via Nodemailer
 - [ ] Build `pages/faq.vue` — FAQ with FAQPage schema via `useHead()`
@@ -965,6 +1024,7 @@ Payment collected at order submission via Stripe. Order written to Supabase only
 - [ ] Build `pages/blog/[slug].vue` — individual post page
 
 **Week 5:**
+
 - [ ] Build `pages/wholesale.vue`
 - [ ] Build `server/api/checkout.post.ts` — Stripe stub (returns 501)
 - [ ] Add all JSON-LD schema via `useHead()` / `useSchemaOrg()` on appropriate pages
@@ -975,7 +1035,8 @@ Payment collected at order submission via Stripe. Order written to Supabase only
 ---
 
 ### Phase 3 — Launch (Week 6)
-*Goal: Production site live on Vercel, old Netlify site retired*
+
+_Goal: Production site live on Vercel, old Netlify site retired_
 
 - [ ] Final QA pass: all pages, forms, cart, schema validation
 - [ ] Run `pnpm build` — zero errors
@@ -988,7 +1049,8 @@ Payment collected at order submission via Stripe. Order written to Supabase only
 ---
 
 ### Phase 4 — Growth Mode (Months 2–6)
-*Goal: Content marketing, review generation, Stripe activation*
+
+_Goal: Content marketing, review generation, Stripe activation_
 
 - [ ] Publish 2 blog posts per month (recipes, gift guides)
 - [ ] Set up review generation: QR code at market booth → Google review link
@@ -1001,15 +1063,18 @@ Payment collected at order submission via Stripe. Order written to Supabase only
 ---
 
 ### Phase 5 — Review & Hardening (Post-launch)
-*Goal: Close gaps in design, security, and developer workflow*
+
+_Goal: Close gaps in design, security, and developer workflow_
 
 **UI/UX Design Review**
+
 - [ ] Commission or conduct an expert design review of all pages
 - [ ] Audit mobile experience end-to-end (real device, not just DevTools)
 - [ ] Review conversion flow: hero → product → cart → checkout
 - [ ] Validate accessibility: keyboard nav, focus management, color contrast, ARIA where needed
 
 **Security Review**
+
 - [ ] Audit all `server/api/` routes: input validation, rate limiting, CSRF posture
 - [ ] Review HTTP security headers in `nuxt.config.ts` (`routeRules`)
 - [ ] Confirm no secrets are exposed in client bundle (`runtimeConfig` audit)
@@ -1017,6 +1082,7 @@ Payment collected at order submission via Stripe. Order written to Supabase only
 - [ ] Confirm WordPress GraphQL endpoint is read-only and not publicly introspectable in production
 
 **AI Developer Workflow**
+
 - [ ] Design an AI-assisted content workflow using the chosen stack (Vercel, headless WordPress, GitHub)
 - [ ] Explore: GitHub Actions + AI for draft blog post generation from event recaps
 - [ ] Explore: AI-assisted product description updates via WP Admin or API
@@ -1028,25 +1094,25 @@ Payment collected at order submission via Stripe. Order written to Supabase only
 
 ### Self-Service (Client can do without developer)
 
-| Task | How |
-|---|---|
-| Add / edit / remove products | WordPress Admin → Products CPT |
-| Add / edit / remove events | WordPress Admin → Events CPT |
-| Publish blog posts | WordPress Admin → Posts |
-| Update market hours | WordPress Admin → Site Settings (ACF options page) |
-| Update prices | WordPress Admin → Products CPT |
-| Add FAQ questions | WordPress Admin → FAQ CPT (or manual in `/faq` page initially) |
+| Task                         | How                                                            |
+| ---------------------------- | -------------------------------------------------------------- |
+| Add / edit / remove products | WordPress Admin → Products CPT                                 |
+| Add / edit / remove events   | WordPress Admin → Events CPT                                   |
+| Publish blog posts           | WordPress Admin → Posts                                        |
+| Update market hours          | WordPress Admin → Site Settings (ACF options page)             |
+| Update prices                | WordPress Admin → Products CPT                                 |
+| Add FAQ questions            | WordPress Admin → FAQ CPT (or manual in `/faq` page initially) |
 
 ### Developer Required
 
-| Task | Why |
-|---|---|
-| Add a new page type | Requires new `.vue` file in `pages/` and any supporting components |
-| Activate Stripe checkout | API integration + webhook setup |
-| Change schema markup structure | Code change in layout/page files |
-| Major design changes | Tailwind component updates |
-| Add new CMS field types | ACF config + GraphQL query updates |
-| Performance optimization | Code-level changes |
+| Task                           | Why                                                                |
+| ------------------------------ | ------------------------------------------------------------------ |
+| Add a new page type            | Requires new `.vue` file in `pages/` and any supporting components |
+| Activate Stripe checkout       | API integration + webhook setup                                    |
+| Change schema markup structure | Code change in layout/page files                                   |
+| Major design changes           | Tailwind component updates                                         |
+| Add new CMS field types        | ACF config + GraphQL query updates                                 |
+| Performance optimization       | Code-level changes                                                 |
 
 ---
 
@@ -1054,35 +1120,35 @@ Payment collected at order submission via Stripe. Order written to Supabase only
 
 ### Technical
 
-| Metric | Target | Timeline |
-|---|---|---|
-| PageSpeed mobile score | 85+ | Launch day |
-| PageSpeed desktop score | 95+ | Launch day |
-| Core Web Vitals | All green | Launch day |
-| Schema on all pages | 100% | Launch day |
-| Rich Results Test pass | All structured data valid | Launch day |
-| Build time | Under 60 seconds | Ongoing |
-| Zero TypeScript errors | 0 | Ongoing |
+| Metric                  | Target                    | Timeline   |
+| ----------------------- | ------------------------- | ---------- |
+| PageSpeed mobile score  | 85+                       | Launch day |
+| PageSpeed desktop score | 95+                       | Launch day |
+| Core Web Vitals         | All green                 | Launch day |
+| Schema on all pages     | 100%                      | Launch day |
+| Rich Results Test pass  | All structured data valid | Launch day |
+| Build time              | Under 60 seconds          | Ongoing    |
+| Zero TypeScript errors  | 0                         | Ongoing    |
 
 ### SEO
 
-| Metric | Target | Timeline |
-|---|---|---|
-| Google Search Console coverage | All pages indexed | Week 1 post-launch |
-| GBP optimized | Photos, hours, products, messaging live | Week 1 |
-| Local pack appearance for "cinnamon nuts Lansing" | Top 3 | Month 3 |
-| Organic sessions | Baseline established | Month 1 |
-| Featured snippet for FAQ questions | 2+ questions | Month 6 |
+| Metric                                            | Target                                  | Timeline           |
+| ------------------------------------------------- | --------------------------------------- | ------------------ |
+| Google Search Console coverage                    | All pages indexed                       | Week 1 post-launch |
+| GBP optimized                                     | Photos, hours, products, messaging live | Week 1             |
+| Local pack appearance for "cinnamon nuts Lansing" | Top 3                                   | Month 3            |
+| Organic sessions                                  | Baseline established                    | Month 1            |
+| Featured snippet for FAQ questions                | 2+ questions                            | Month 6            |
 
 ### Business
 
-| Metric | Target | Timeline |
-|---|---|---|
-| Email list size | 200+ subscribers | Month 6 |
-| Online orders via mailto | 10+ per month | Month 2 |
-| Google reviews | 25+ reviews at 4.8+ stars | Month 6 |
-| Blog posts published | 12 posts (2/month) | Month 6 |
-| Wholesale inquiries | 5+ leads | Month 6 |
+| Metric                   | Target                    | Timeline |
+| ------------------------ | ------------------------- | -------- |
+| Email list size          | 200+ subscribers          | Month 6  |
+| Online orders via mailto | 10+ per month             | Month 2  |
+| Google reviews           | 25+ reviews at 4.8+ stars | Month 6  |
+| Blog posts published     | 12 posts (2/month)        | Month 6  |
+| Wholesale inquiries      | 5+ leads                  | Month 6  |
 
 ---
 
@@ -1116,4 +1182,4 @@ Payment collected at order submission via Stripe. Order written to Supabase only
 
 ---
 
-*Document prepared by tinkrLAB for The Nut Barn LLC, February 2026.*
+_Document prepared by tinkrLAB for The Nut Barn LLC, February 2026._

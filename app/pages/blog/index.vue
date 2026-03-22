@@ -33,10 +33,11 @@ function formatDate(dateStr: string): string {
 <template>
   <div>
     <!-- Header -->
-    <section class="px-4 py-12 text-center" style="background-color:var(--color-cream-dark);">
+    <section class="px-4 py-14 text-center" style="background:var(--gradient-hero);color:var(--color-text-inverse);">
       <div class="mx-auto" style="max-width:var(--container-md);">
-        <h1 style="font-size:clamp(2rem,5vw,3rem);color:var(--color-brown);">From the Barn</h1>
-        <p class="mt-2" style="color:var(--color-text-muted);">Stories, tips, and market updates from The Nut Barn.</p>
+        <p class="eyebrow mb-2" style="color:var(--color-mustard);">The Nut Barn</p>
+        <h1 style="font-size:clamp(2rem,5vw,3rem);color:var(--color-cream-light);">From the Barn</h1>
+        <p class="mt-2" style="color:rgba(253,246,232,0.8);">Stories, tips, and market updates from The Nut Barn.</p>
       </div>
     </section>
 
@@ -44,7 +45,7 @@ function formatDate(dateStr: string): string {
       <!-- Empty state -->
       <div v-if="!posts?.length" class="text-center py-16">
         <p class="text-lg mb-2" style="color:var(--color-text-muted);">No posts yet.</p>
-        <p style="color:var(--color-text-muted);">Follow us on Instagram <strong style="color:var(--color-brown);">@thenutbarn</strong> for updates!</p>
+        <p style="color:var(--color-text-muted);">Follow us on Instagram <strong style="color:var(--color-denim);">@thenutbarn</strong> for updates!</p>
       </div>
 
       <!-- Post grid -->
@@ -52,14 +53,13 @@ function formatDate(dateStr: string): string {
         <li
           v-for="post in posts"
           :key="post.id"
-          class="bg-white rounded-2xl border overflow-hidden"
-          style="border-color:var(--color-border);box-shadow:var(--shadow-sm);"
+          class="bg-white rounded-lg overflow-hidden card-vintage"
         >
           <!-- Image placeholder -->
           <div class="aspect-[16/9]" style="background:var(--gradient-product);" aria-hidden="true" />
           <div class="p-5">
-            <p class="text-xs mb-2 uppercase font-bold" style="color:var(--color-text-muted);letter-spacing:var(--letter-spacing-wide);">{{ formatDate(post.date) }}</p>
-            <h2 class="mb-2" style="font-size:1.125rem;color:var(--color-brown);">{{ post.title }}</h2>
+            <p class="eyebrow mb-2">{{ formatDate(post.date) }}</p>
+            <h2 class="mb-2" style="font-size:1.125rem;color:var(--color-denim);">{{ post.title }}</h2>
             <p class="text-sm mb-4" style="color:var(--color-text-muted);">{{ post.excerpt }}</p>
             <NuxtLink :to="`/blog/${post.slug}`" class="text-sm font-bold" style="color:var(--color-orange);">Read More →</NuxtLink>
           </div>
@@ -68,7 +68,7 @@ function formatDate(dateStr: string): string {
 
       <!-- Shop CTA -->
       <div class="mt-12 text-center">
-        <NuxtLink to="/shop" class="font-bold px-8 py-3.5 rounded-full transition-colors" style="background-color:var(--color-orange);color:white;">
+        <NuxtLink to="/shop" class="font-bold px-8 py-3.5 rounded btn-vintage" style="background-color:var(--color-orange);color:white;">
           Shop Our Nuts →
         </NuxtLink>
       </div>

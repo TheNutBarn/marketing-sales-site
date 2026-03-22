@@ -6,35 +6,31 @@
 
 @theme {
   /* FONTS */
-  --font-display: 'Alfa Slab One', 'Georgia', serif;
-  --font-heading: 'Josefin Slab', 'Georgia', serif;
+  --font-display: 'Rye', 'Georgia', serif;
+  --font-heading: 'Libre Baskerville', 'Georgia', serif;
   --font-body:    'Lato', system-ui, -apple-system, sans-serif;
   --font-chalk:   'Caveat', cursive;
   --font-mono:    ui-monospace, 'Courier New', monospace;
 
   /* COLORS — Brand Core */
-  --color-brown:          #8B4513;
-  --color-brown-dark:     #5c2d0e;
-  --color-brown-mid:      #654321;
-  --color-orange:         #ff6b35;
-  --color-orange-hover:   #e85d29;
+  --color-denim:          #2B4A6B;
+  --color-midnight:       #1A2E40;
+  --color-orange:         #C9431A;
+  --color-orange-dark:    #A33514;
+  --color-mustard:        #F5C542;
 
-  /* COLORS — Physical Brand (from booth + logo) */
-  --color-barn-red:       #9B1B1B;
-  --color-straw:          #C9A84C;
-  --color-denim:          #3B6EA5;
-  --color-pine-wood:      #C8892A;
+  /* COLORS — Surfaces */
+  --color-cream:          #F5E6C8;
+  --color-cream-light:    #FDF6E8;
+  --color-cream-dark:     #EDD8AA;
+
+  /* COLORS — Chalkboard (kept for find-us schedule) */
   --color-chalkboard:     #1C1C1C;
   --color-chalk-white:    #F2F0EB;
 
-  /* COLORS — Surfaces */
-  --color-cream:          #f8f6f0;
-  --color-cream-dark:     #ede9df;
-  --color-cream-warm:     #f4e4bc;
-
   /* COLORS — Text */
-  --color-text:           #2d1a0e;
-  --color-text-muted:     #6b5a4e;
+  --color-text:           #1A2E40;
+  --color-text-muted:     #4a6080;
   --color-text-inverse:   #ffffff;
 
   /* COLORS — Semantic */
@@ -46,9 +42,9 @@
   --color-warning-light:  #fef3c7;
 
   /* COLORS — UI */
-  --color-border:         #d9cfc4;
-  --color-border-strong:  #b5a89a;
-  --color-focus:          #8B4513;
+  --color-border:         #c5cdd8;
+  --color-border-strong:  #8a9ab0;
+  --color-focus:          #2B4A6B;
 
   /* FONT SIZES */
   --font-size-xs:      0.75rem;
@@ -98,11 +94,16 @@
   --radius-2xl:  24px;
   --radius-full: 9999px;
 
-  /* SHADOWS — warm-tinted (not gray) */
-  --shadow-sm:   0 1px 3px rgba(45, 26, 14, 0.08);
-  --shadow-md:   0 4px 12px rgba(45, 26, 14, 0.10);
-  --shadow-lg:   0 8px 24px rgba(45, 26, 14, 0.12);
-  --shadow-xl:   0 16px 48px rgba(45, 26, 14, 0.15);
+  /* SHADOWS — soft (for subtle depth) */
+  --shadow-sm:   0 1px 3px rgba(26, 46, 64, 0.08);
+  --shadow-md:   0 4px 12px rgba(26, 46, 64, 0.10);
+  --shadow-lg:   0 8px 24px rgba(26, 46, 64, 0.12);
+  --shadow-xl:   0 16px 48px rgba(26, 46, 64, 0.15);
+
+  /* SHADOWS — vintage offset (hard, no blur) */
+  --shadow-offset-sm: 2px 2px 0 var(--color-midnight);
+  --shadow-offset-md: 3px 3px 0 var(--color-midnight);
+  --shadow-offset-lg: 5px 5px 0 var(--color-midnight);
 
   /* TRANSITIONS */
   --duration-quick:    150ms;
@@ -128,9 +129,9 @@
   --z-toast:   400;
 
   /* GRADIENTS */
-  --gradient-product: linear-gradient(135deg, #f4e4bc 0%, #C8892A 60%, #8B4513 100%);
-  --gradient-hero:    linear-gradient(135deg, #8B4513 0%, #C8892A 100%);
-  --gradient-barn:    linear-gradient(135deg, #9B1B1B 0%, #5c2d0e 100%);
+  --gradient-product: linear-gradient(135deg, #FDF6E8 0%, #F5C542 60%, #C9431A 100%);
+  --gradient-hero:    linear-gradient(135deg, #2B4A6B 0%, #1A2E40 100%);
+  --gradient-mustard: linear-gradient(135deg, #F5C542 0%, #e8b420 100%);
 }
 
 /* Component-level custom properties */
@@ -171,8 +172,8 @@ h1, .h1 {
 }
 
 h2, h3, .h2, .h3 {
-  font-family: var(--font-heading);
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-weight: 400;
   line-height: var(--line-height-snug);
 }
 
@@ -183,13 +184,96 @@ h4, h5, h6, .h4 {
   letter-spacing: var(--letter-spacing-wide);
 }
 
-/* Chalkboard UI pattern — for market schedule, callouts ONLY
+/* ─── Section header pattern ───────────────────── */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-orange);
+  margin-bottom: 0.5rem;
+}
+
+.ornament {
+  font-family: var(--font-body);
+  color: var(--color-mustard);
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  margin-top: 0.5rem;
+}
+
+/* ─── Vintage card ─────────────────────────────── */
+.card-vintage {
+  box-shadow: var(--shadow-offset-md);
+  transition: transform var(--duration-quick) var(--ease-out),
+              box-shadow var(--duration-quick) var(--ease-out);
+}
+
+.card-vintage:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-offset-lg);
+}
+
+/* ─── Vintage button ───────────────────────────── */
+.btn-vintage {
+  box-shadow: var(--shadow-offset-sm);
+  transition: transform var(--duration-quick) var(--ease-out),
+              box-shadow var(--duration-quick) var(--ease-out);
+}
+
+.btn-vintage:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-offset-md);
+}
+
+.btn-vintage:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--color-midnight);
+}
+
+/* ─── Scroll reveal ────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition: opacity var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Float animation (hero mascot) ───────────────*/
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3.5s ease-in-out infinite;
+}
+
+/* ─── Marquee animation ────────────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  white-space: nowrap;
+  animation: marquee 20s linear infinite;
+}
+
+/* ─── Chalkboard UI pattern — for market schedule ONLY
    Do NOT use for: product cards, nav, forms, body copy */
 .chalkboard {
   background: var(--color-chalkboard);
   color: var(--color-chalk-white);
   font-family: var(--font-chalk);
-  border: 3px solid var(--color-pine-wood);
+  border: 3px solid #C8892A;
   border-radius: var(--radius-md);
 }
 
@@ -201,7 +285,7 @@ h4, h5, h6, .h4 {
   height: 100%;
   width: var(--drawer-width);
   max-width: 100vw;
-  background: white;
+  background: var(--color-cream-light);
   transform: translateX(100%);
   transition: transform var(--duration-moderate) var(--ease-out);
   z-index: var(--z-drawer);
@@ -211,6 +295,26 @@ h4, h5, h6, .h4 {
 
 .cart-drawer.is-open {
   transform: translateX(0);
+}
+
+.cart-drawer-header {
+  background: var(--color-denim);
+  color: var(--color-text-inverse);
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.cart-drawer-header h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--color-cream-light);
+  font-size: 1.25rem;
+  margin: 0;
 }
 
 /* ─── Toast ────────────────────────────────────── */

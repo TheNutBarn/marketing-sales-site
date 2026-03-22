@@ -66,10 +66,10 @@ function formatDate(dateStr: string): string {
 <template>
   <div v-if="post">
     <!-- Article header -->
-    <section class="px-4 py-14 text-center" style="background-color:var(--color-cream-dark);">
+    <section class="px-4 py-14 text-center" style="background:var(--gradient-hero);color:var(--color-text-inverse);">
       <div class="mx-auto" style="max-width:var(--container-md);">
-        <p class="text-sm font-bold uppercase mb-3" style="color:var(--color-text-muted);letter-spacing:var(--letter-spacing-wider);">{{ formatDate(post.date) }}</p>
-        <h1 style="font-size:clamp(1.75rem,4vw,2.75rem);color:var(--color-brown);">{{ post.title }}</h1>
+        <p class="eyebrow mb-3" style="color:var(--color-mustard);">{{ formatDate(post.date) }}</p>
+        <h1 style="font-size:clamp(1.75rem,4vw,2.75rem);color:var(--color-cream-light);">{{ post.title }}</h1>
       </div>
     </section>
 
@@ -77,7 +77,7 @@ function formatDate(dateStr: string): string {
     <div class="mx-auto px-4 py-12 grid grid-cols-1 lg:grid-cols-4 gap-12" style="max-width:var(--container-xl);">
       <!-- Article body -->
       <article class="lg:col-span-3 prose" style="max-width:none;">
-        <div class="aspect-[16/9] rounded-2xl overflow-hidden mb-8" style="background:var(--gradient-product);" aria-hidden="true" />
+        <div class="aspect-[16/9] rounded-lg overflow-hidden mb-8" style="background:var(--gradient-product);" aria-hidden="true" />
 
         <div class="space-y-4" style="color:var(--color-text);line-height:var(--line-height-relaxed);">
           <p v-for="(paragraph, i) in post.body.split('\n\n')" :key="i">
@@ -93,10 +93,10 @@ function formatDate(dateStr: string): string {
 
       <!-- Sticky CTA sidebar -->
       <aside class="lg:col-span-1">
-        <div class="sticky top-24 rounded-2xl p-5 border text-center" style="background-color:var(--color-cream-warm);border-color:var(--color-border);">
-          <p class="font-bold mb-2" style="font-family:var(--font-heading);color:var(--color-brown);">Try Our Nuts</p>
-          <p class="text-sm mb-4" style="color:var(--color-text-muted);">FIVE simple ingredients. Vegan. Gluten-free. WARNING: habit forming.</p>
-          <NuxtLink to="/shop" class="block w-full font-bold py-2.5 rounded-full text-sm text-center transition-colors" style="background-color:var(--color-orange);color:white;">
+        <div class="sticky top-24 rounded-lg p-5 text-center card-vintage" style="background-color:var(--color-denim);">
+          <p class="font-bold mb-2" style="font-family:var(--font-display);color:var(--color-mustard);font-size:1rem;">Try Our Nuts</p>
+          <p class="text-sm mb-4" style="color:rgba(253,246,232,0.8);">FIVE simple ingredients. Vegan. Gluten-free. WARNING: habit forming.</p>
+          <NuxtLink to="/shop" class="block w-full font-bold py-2.5 rounded text-sm text-center btn-vintage" style="background-color:var(--color-orange);color:white;">
             Shop Our Nuts →
           </NuxtLink>
         </div>
