@@ -27,11 +27,11 @@ function showToast() {
     <!-- Quantity selector -->
     <div class="flex items-center gap-2">
       <label :for="`qty-${product.id}`" class="text-sm font-bold" style="color:var(--color-text);">Qty:</label>
-      <div class="flex items-center border rounded-lg overflow-hidden" style="border-color:var(--color-border);">
+      <div class="flex items-center border rounded overflow-hidden" style="border-color:var(--color-denim);">
         <button
           type="button"
           class="flex items-center justify-center font-bold text-lg transition-colors"
-          style="width:var(--touch-target);height:var(--touch-target);color:var(--color-brown);"
+          style="width:var(--touch-target);height:var(--touch-target);color:var(--color-denim);"
           aria-label="Decrease quantity"
           @click="quantity = Math.max(1, quantity - 1)"
         >−</button>
@@ -48,7 +48,7 @@ function showToast() {
         <button
           type="button"
           class="flex items-center justify-center font-bold text-lg transition-colors"
-          style="width:var(--touch-target);height:var(--touch-target);color:var(--color-brown);"
+          style="width:var(--touch-target);height:var(--touch-target);color:var(--color-denim);"
           aria-label="Increase quantity"
           @click="quantity = Math.min(99, quantity + 1)"
         >+</button>
@@ -58,8 +58,8 @@ function showToast() {
     <!-- Add to cart button -->
     <button
       type="button"
-      class="w-full font-bold py-3 px-6 rounded-full transition-all"
-      style="background-color:var(--color-orange);color:white;transition-duration:var(--duration-base);"
+      class="w-full font-bold py-3 px-6 rounded btn-vintage"
+      style="background-color:var(--color-orange);color:white;"
       @click="addToCart"
     >
       Add to Cart
@@ -72,7 +72,7 @@ function showToast() {
       class="toast"
       :class="{ 'is-visible': toastVisible }"
     >
-      <div class="text-sm font-bold px-4 py-2.5 rounded-full" style="background-color:var(--color-brown-dark);color:white;box-shadow:var(--shadow-lg);">
+      <div class="text-sm font-bold px-4 py-2.5 rounded" style="background-color:var(--color-mustard);color:var(--color-midnight);box-shadow:var(--shadow-offset-sm);">
         ✓ Added to cart
       </div>
     </div>

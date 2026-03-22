@@ -24,24 +24,24 @@ function closeMobileNav() {
   <a
     href="#main-content"
     class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[500] focus:px-4 focus:py-2 focus:rounded-md focus:font-bold"
-    style="background-color:var(--color-brown);color:white;"
+    style="background-color:var(--color-mustard);color:var(--color-midnight);"
   >
     Skip to content
   </a>
 
   <header
-    class="sticky top-0 bg-white border-b"
-    style="z-index:var(--z-sticky);height:var(--header-height);border-color:var(--color-border);"
+    class="sticky top-0 border-b-2"
+    style="background-color:var(--color-midnight);border-color:var(--color-orange);z-index:var(--z-sticky);height:var(--header-height);"
   >
     <div class="mx-auto px-4 h-full flex items-center justify-between gap-4" style="max-width:var(--container-xl)">
       <!-- Logo -->
       <NuxtLink
         to="/"
         class="shrink-0 no-underline"
-        style="color:var(--color-brown);"
+        style="color:var(--color-mustard);"
         @click="closeMobileNav"
       >
-        <span style="font-family:var(--font-display);font-size:1.25rem;line-height:1;">The Nut Barn</span>
+        <span style="font-family:var(--font-display);font-size:1.35rem;line-height:1;letter-spacing:0.02em;">The Nut Barn</span>
       </NuxtLink>
 
       <!-- Desktop nav -->
@@ -49,20 +49,20 @@ function closeMobileNav() {
         <NuxtLink
           to="/shop"
           class="font-bold transition-colors"
-          style="color:var(--color-text);font-family:var(--font-body);"
-          active-class="!text-[--color-orange]"
+          style="color:var(--color-cream-light);font-family:var(--font-body);"
+          active-class="!text-[--color-mustard]"
         >Shop</NuxtLink>
         <NuxtLink
           to="/find-us"
           class="font-bold transition-colors"
-          style="color:var(--color-text);font-family:var(--font-body);"
-          active-class="!text-[--color-orange]"
+          style="color:var(--color-cream-light);font-family:var(--font-body);"
+          active-class="!text-[--color-mustard]"
         >Find Us</NuxtLink>
         <NuxtLink
           to="/our-story"
           class="font-bold transition-colors"
-          style="color:var(--color-text);font-family:var(--font-body);"
-          active-class="!text-[--color-orange]"
+          style="color:var(--color-cream-light);font-family:var(--font-body);"
+          active-class="!text-[--color-mustard]"
         >Our Story</NuxtLink>
       </nav>
 
@@ -72,7 +72,7 @@ function closeMobileNav() {
         <button
           type="button"
           class="relative flex items-center justify-center transition-colors"
-          style="width:var(--touch-target);height:var(--touch-target);color:var(--color-text);"
+          style="width:var(--touch-target);height:var(--touch-target);color:var(--color-mustard);"
           aria-label="Open shopping cart"
           @click="cart.openDrawer()"
         >
@@ -96,7 +96,7 @@ function closeMobileNav() {
         <button
           type="button"
           class="md:hidden flex items-center justify-center transition-colors"
-          style="width:var(--touch-target);height:var(--touch-target);color:var(--color-text);"
+          style="width:var(--touch-target);height:var(--touch-target);color:var(--color-mustard);"
           :aria-expanded="mobileNavOpen"
           aria-label="Toggle navigation menu"
           @click="toggleMobileNav"
@@ -124,21 +124,21 @@ function closeMobileNav() {
     >
       <!-- Backdrop -->
       <div
-        class="absolute inset-0 bg-black/50"
+        class="absolute inset-0 bg-black/60"
         aria-hidden="true"
         @click="closeMobileNav"
       />
 
       <!-- Drawer panel -->
       <nav
-        class="relative bg-white w-72 max-w-full h-full flex flex-col p-6 overflow-y-auto"
-        style="box-shadow:var(--shadow-xl);"
+        class="relative w-72 max-w-full h-full flex flex-col p-6 overflow-y-auto"
+        style="background-color:var(--color-midnight);box-shadow:var(--shadow-xl);"
         aria-label="Mobile navigation"
       >
         <button
           type="button"
           class="self-end mb-6 flex items-center justify-center"
-          style="width:var(--touch-target);height:var(--touch-target);color:var(--color-text-muted);"
+          style="width:var(--touch-target);height:var(--touch-target);color:var(--color-cream-light);"
           aria-label="Close navigation menu"
           @click="closeMobileNav"
         >
@@ -149,18 +149,18 @@ function closeMobileNav() {
         </button>
 
         <div class="flex flex-col gap-1">
-          <NuxtLink to="/shop" class="text-lg font-bold py-3 border-b" style="color:var(--color-text);border-color:var(--color-border);" @click="closeMobileNav">Shop</NuxtLink>
-          <NuxtLink to="/find-us" class="text-lg font-bold py-3 border-b" style="color:var(--color-text);border-color:var(--color-border);" @click="closeMobileNav">Find Us</NuxtLink>
-          <NuxtLink to="/our-story" class="text-lg font-bold py-3 border-b" style="color:var(--color-text);border-color:var(--color-border);" @click="closeMobileNav">Our Story</NuxtLink>
-          <NuxtLink to="/blog" class="py-3 border-b" style="color:var(--color-text-muted);border-color:var(--color-border);" @click="closeMobileNav">Blog</NuxtLink>
-          <NuxtLink to="/faq" class="py-3 border-b" style="color:var(--color-text-muted);border-color:var(--color-border);" @click="closeMobileNav">FAQ</NuxtLink>
-          <NuxtLink to="/wholesale" class="py-3 border-b" style="color:var(--color-text-muted);border-color:var(--color-border);" @click="closeMobileNav">Wholesale</NuxtLink>
-          <NuxtLink to="/contact" class="py-3" style="color:var(--color-text-muted);" @click="closeMobileNav">Contact</NuxtLink>
+          <NuxtLink to="/shop" class="text-lg font-bold py-3 border-b" style="color:var(--color-mustard);border-color:rgba(245,197,66,0.2);" @click="closeMobileNav">Shop</NuxtLink>
+          <NuxtLink to="/find-us" class="text-lg font-bold py-3 border-b" style="color:var(--color-mustard);border-color:rgba(245,197,66,0.2);" @click="closeMobileNav">Find Us</NuxtLink>
+          <NuxtLink to="/our-story" class="text-lg font-bold py-3 border-b" style="color:var(--color-mustard);border-color:rgba(245,197,66,0.2);" @click="closeMobileNav">Our Story</NuxtLink>
+          <NuxtLink to="/blog" class="py-3 border-b" style="color:var(--color-cream-light);border-color:rgba(253,246,232,0.15);" @click="closeMobileNav">Blog</NuxtLink>
+          <NuxtLink to="/faq" class="py-3 border-b" style="color:var(--color-cream-light);border-color:rgba(253,246,232,0.15);" @click="closeMobileNav">FAQ</NuxtLink>
+          <NuxtLink to="/wholesale" class="py-3 border-b" style="color:var(--color-cream-light);border-color:rgba(253,246,232,0.15);" @click="closeMobileNav">Wholesale</NuxtLink>
+          <NuxtLink to="/contact" class="py-3" style="color:var(--color-cream-light);" @click="closeMobileNav">Contact</NuxtLink>
         </div>
 
         <div class="mt-auto pt-6">
-          <p class="text-sm mb-1" style="color:var(--color-text-muted);">Dimondale, Michigan</p>
-          <a href="tel:5174109029" class="text-sm font-bold" style="color:var(--color-brown);">(517) 410-9029</a>
+          <p class="text-sm mb-1" style="color:var(--color-cream);">Dimondale, Michigan</p>
+          <a href="tel:5174109029" class="text-sm font-bold" style="color:var(--color-mustard);">(517) 410-9029</a>
         </div>
       </nav>
     </div>

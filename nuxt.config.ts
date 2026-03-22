@@ -81,14 +81,14 @@ export default defineNuxtConfig({
         },
         {
           rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css2?family=Alfa+Slab+One:ital,wght@0,400&family=Josefin+Slab:ital,wght@0,600;0,700&family=Lato:ital,wght@0,400;0,700&family=Caveat:wght@400;700&display=swap",
+          href: "https://fonts.googleapis.com/css2?family=Rye:wght@400&family=Libre+Baskerville:ital,wght@1,400&family=Lato:ital,wght@0,400;0,700;0,900&family=Caveat:wght@400;700&display=swap",
         },
       ],
     },
   },
 
   site: {
-    url: "https://thenutbarn.com",
+    url: "https://thenutbarn.net",
   },
 
   sitemap: {},

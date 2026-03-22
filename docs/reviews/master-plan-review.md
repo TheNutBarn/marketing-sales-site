@@ -12,16 +12,16 @@ Five parallel agents reviewed the master plan across Security, Architecture, UI/
 
 ### Themes That Appeared in 3+ Reviews (Highest Signal)
 
-| Issue | Reviews |
-|---|---|
-| Server-side input validation (Zod) on all API routes | Security, Architectural, Code |
-| Rate limiting on `/api/orders` and `/api/contact` — move from Phase 5 to Phase 1 | Security, Architectural, Code |
-| `routeRules` cache syntax wrong — needs `swr:` or explicit `Cache-Control` headers for Vercel | Architectural, Code |
-| Pinia cart SSR hydration mismatch — `import.meta.client` guard required | Architectural, Code |
-| `composables/useCart.ts` → should be `stores/cart.ts` (Pinia convention) | Architectural, Code |
-| WPGraphQL introspection must be disabled in production — don't defer to Phase 5 | Security, Code |
-| Server must recompute order total — never trust client-submitted prices | Security, Code |
-| Orange `#ff6b35` on white/cream fails WCAG AA for text | UX, Design |
+| Issue                                                                                         | Reviews                       |
+| --------------------------------------------------------------------------------------------- | ----------------------------- |
+| Server-side input validation (Zod) on all API routes                                          | Security, Architectural, Code |
+| Rate limiting on `/api/orders` and `/api/contact` — move from Phase 5 to Phase 1              | Security, Architectural, Code |
+| `routeRules` cache syntax wrong — needs `swr:` or explicit `Cache-Control` headers for Vercel | Architectural, Code           |
+| Pinia cart SSR hydration mismatch — `import.meta.client` guard required                       | Architectural, Code           |
+| `composables/useCart.ts` → should be `stores/cart.ts` (Pinia convention)                      | Architectural, Code           |
+| WPGraphQL introspection must be disabled in production — don't defer to Phase 5               | Security, Code                |
+| Server must recompute order total — never trust client-submitted prices                       | Security, Code                |
+| Orange `#ff6b35` on white/cream fails WCAG AA for text                                        | UX, Design                    |
 
 ---
 
@@ -53,22 +53,27 @@ Resend API key must be a **send-only** scoped key restricted to the verified sen
 **Severity: High**
 
 No rate limiting is documented on any API route. Without it:
-- A bot can flood `thenutbarnllc@gmail.com` (500 emails/day personal Gmail limit)
+
+- A bot can flood `contact@thenetbarn.net` (500 emails/day personal Gmail limit)
 - The order route can be used as an open email relay to bomb arbitrary addresses
 - Resend free tier (3,000 emails/month) can be exhausted in hours
 
 Add to every server route using Nitro's built-in `getRequestIP`:
 
 ```ts
-const rateLimitStore = new Map<string, { count: number; reset: number }>()
+const rateLimitStore = new Map<string, { count: number; reset: number }>();
 
-const ip = getRequestHeader(event, 'x-forwarded-for') ?? 'unknown'
-const now = Date.now()
-const entry = rateLimitStore.get(ip) ?? { count: 0, reset: now + 60_000 }
-if (now > entry.reset) { entry.count = 0; entry.reset = now + 60_000 }
-entry.count++
-rateLimitStore.set(ip, entry)
-if (entry.count > 3) throw createError({ statusCode: 429, message: 'Too many requests' })
+const ip = getRequestHeader(event, "x-forwarded-for") ?? "unknown";
+const now = Date.now();
+const entry = rateLimitStore.get(ip) ?? { count: 0, reset: now + 60_000 };
+if (now > entry.reset) {
+  entry.count = 0;
+  entry.reset = now + 60_000;
+}
+entry.count++;
+rateLimitStore.set(ip, entry);
+if (entry.count > 3)
+  throw createError({ statusCode: 429, message: "Too many requests" });
 ```
 
 Move rate limiting to **Phase 1**, not Phase 5.
@@ -84,20 +89,25 @@ No server-side validation is documented. Without it, user-submitted fields can i
 Use Zod on every server route:
 
 ```ts
-import { z } from 'zod'
+import { z } from "zod";
 
 const OrderSchema = z.object({
   name: z.string().min(2).max(100).trim(),
   email: z.string().email().max(254),
   phone: z.string().regex(/^[\d\s\-\+\(\)]{7,20}$/),
-  fulfillment: z.enum(['pickup', 'delivery']),
+  fulfillment: z.enum(["pickup", "delivery"]),
   address: z.string().max(300).optional(),
   notes: z.string().max(1000).optional(),
-  items: z.array(z.object({
-    id: z.string().max(50),
-    quantity: z.number().int().positive().max(99),
-  })).min(1).max(20),
-})
+  items: z
+    .array(
+      z.object({
+        id: z.string().max(50),
+        quantity: z.number().int().positive().max(99),
+      }),
+    )
+    .min(1)
+    .max(20),
+});
 ```
 
 ---
@@ -111,9 +121,11 @@ User-supplied fields (name, notes, address) interpolated into HTML email templat
 ```ts
 function escapeHtml(str: string): string {
   return str
-    .replace(/&/g, '&amp;').replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;').replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;')
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 ```
 
@@ -127,14 +139,20 @@ The server must recompute the order total from its own price table:
 
 ```ts
 const PRICES: Record<string, number> = {
-  'nuts-6oz': 1000, 'nuts-8oz': 1500,
-  'nuts-15oz': 2300, 'gift-basket': 4000,
-}
+  "nuts-6oz": 1000,
+  "nuts-8oz": 1500,
+  "nuts-15oz": 2300,
+  "gift-basket": 4000,
+};
 const total = items.reduce((sum, item) => {
-  const price = PRICES[item.id]
-  if (!price) throw createError({ statusCode: 400, message: `Unknown product: ${item.id}` })
-  return sum + price * item.quantity
-}, 0)
+  const price = PRICES[item.id];
+  if (!price)
+    throw createError({
+      statusCode: 400,
+      message: `Unknown product: ${item.id}`,
+    });
+  return sum + price * item.quantity;
+}, 0);
 ```
 
 ---
@@ -171,8 +189,8 @@ The anon key must have zero access to the `orders` table. Never initialize Supab
 - Webhook handler must verify `Stripe-Signature` header using the **raw** body (not parsed JSON):
 
 ```ts
-const rawBody = await readRawBody(event)
-stripe.webhooks.constructEvent(rawBody!, sig!, webhookSecret)
+const rawBody = await readRawBody(event);
+stripe.webhooks.constructEvent(rawBody!, sig!, webhookSecret);
 ```
 
 ---
@@ -199,7 +217,7 @@ CSP requires testing — implement `Content-Security-Policy-Report-Only` first.
 
 ### 1j. Resend Sender Domain
 
-`thenutbarnllc@gmail.com` cannot be used as a Resend `from` address. A verified sending domain (e.g., `orders@nutbarn.com`) is required. This requires DNS TXT records and is a **Phase 1 infrastructure prerequisite**.
+`contact@thenetbarn.net` cannot be used as a Resend `from` address. A verified sending domain (e.g., `orders@nutbarn.com`) is required. This requires DNS TXT records and is a **Phase 1 infrastructure prerequisite**.
 
 ---
 
@@ -226,6 +244,7 @@ routeRules: {
 ```
 
 For explicit Vercel CDN headers add:
+
 ```ts
 headers: { 'cache-control': 'public, s-maxage=300, stale-while-revalidate=60' }
 ```
@@ -268,10 +287,10 @@ The mock fallback must throw in production when `WORDPRESS_API_URL` is missing:
 
 ```ts
 if (!config.wordpressApiUrl) {
-  if (process.env.NODE_ENV === 'production') {
-    throw new Error('WORDPRESS_API_URL is required in production')
+  if (process.env.NODE_ENV === "production") {
+    throw new Error("WORDPRESS_API_URL is required in production");
   }
-  return MOCK_PRODUCTS
+  return MOCK_PRODUCTS;
 }
 ```
 
@@ -286,10 +305,14 @@ WPGraphQL returns HTTP 200 even on errors. Inspect `response.errors`:
 ```ts
 async function gqlFetch<T>(query: string): Promise<T> {
   const res = await $fetch<{ data: T; errors?: { message: string }[] }>(url, {
-    method: 'POST', body: { query },
-  })
-  if (res.errors?.length) throw new Error(`WPGraphQL: ${res.errors.map(e => e.message).join(', ')}`)
-  return res.data
+    method: "POST",
+    body: { query },
+  });
+  if (res.errors?.length)
+    throw new Error(
+      `WPGraphQL: ${res.errors.map((e) => e.message).join(", ")}`,
+    );
+  return res.data;
 }
 ```
 
@@ -302,9 +325,13 @@ async function gqlFetch<T>(query: string): Promise<T> {
 ```ts
 // stores/cart.ts
 if (import.meta.client) {
-  const stored = localStorage.getItem('nutbarn-cart')
-  if (stored) items.value = JSON.parse(stored)
-  watch(items, (val) => localStorage.setItem('nutbarn-cart', JSON.stringify(val)), { deep: true })
+  const stored = localStorage.getItem("nutbarn-cart");
+  if (stored) items.value = JSON.parse(stored);
+  watch(
+    items,
+    (val) => localStorage.setItem("nutbarn-cart", JSON.stringify(val)),
+    { deep: true },
+  );
 }
 ```
 
@@ -331,10 +358,10 @@ Wrap any header cart count in `<ClientOnly>` to avoid hydration mismatch.
 1. `@tailwindcss/vite` is a **Vite plugin**, not a Nuxt module:
    ```ts
    // nuxt.config.ts
-   import tailwindcss from '@tailwindcss/vite'
+   import tailwindcss from "@tailwindcss/vite";
    export default defineNuxtConfig({
      vite: { plugins: [tailwindcss()] },
-   })
+   });
    ```
 2. Theme variable prefix matters: `--color-brown` generates `bg-brown`; `--brown` does not
 3. Use `@source` directives instead of the old `content` array for purge scanning
@@ -495,16 +522,16 @@ This is a **character-forward, playful, whimsical brand** — not a refined arti
 
 **Booth visual inventory:**
 
-| Element | Color / Detail | Design Implication |
-|---|---|---|
-| Canopy | Bright yellow | High-energy accent — the booth is visible from across the market |
-| Banner | Deep maroon/crimson red + white serif text | `barn-red` should be in the CSS palette |
-| Booth construction | Natural pine/cedar honey wood | `pine-wood` token — warm amber, not generic tan |
-| Chalkboard signs | Black board + green chalk art, hand-drawn flower | Chalkboard UI pattern is a real brand asset |
-| String lights | Warm incandescent amber | Warm glow, market-fair atmosphere — inform image overlays and hero mood |
-| "Hot Chocolate Bar" cabinet | Left station, labeled | Hot Chocolate is a named product/station |
-| Display case sticker | "WARNING: PRODUCT MAY BE HABIT FORMING" | Killer brand copy — use on the website |
-| "PICK UP HERE" sign | Handmade paper sign | The brand has a DIY, handmade quality throughout |
+| Element                     | Color / Detail                                   | Design Implication                                                      |
+| --------------------------- | ------------------------------------------------ | ----------------------------------------------------------------------- |
+| Canopy                      | Bright yellow                                    | High-energy accent — the booth is visible from across the market        |
+| Banner                      | Deep maroon/crimson red + white serif text       | `barn-red` should be in the CSS palette                                 |
+| Booth construction          | Natural pine/cedar honey wood                    | `pine-wood` token — warm amber, not generic tan                         |
+| Chalkboard signs            | Black board + green chalk art, hand-drawn flower | Chalkboard UI pattern is a real brand asset                             |
+| String lights               | Warm incandescent amber                          | Warm glow, market-fair atmosphere — inform image overlays and hero mood |
+| "Hot Chocolate Bar" cabinet | Left station, labeled                            | Hot Chocolate is a named product/station                                |
+| Display case sticker        | "WARNING: PRODUCT MAY BE HABIT FORMING"          | Killer brand copy — use on the website                                  |
+| "PICK UP HERE" sign         | Handmade paper sign                              | The brand has a DIY, handmade quality throughout                        |
 
 **Critical correction from the booth:**
 The booth banner reads "CINNAMON GLAZED NUTS • HOT COFFEE • WATER" but the chalkboard says "HOT Chocolate $2.00" and a cabinet is labeled "Hot Chocolate Bar." Hot Chocolate is the signature warm drink — all website copy should reference Hot Chocolate, not "Hot Coffee."
@@ -563,13 +590,18 @@ Body: Lato (400, 700)
 ```
 
 Google Fonts import (~55KB woff2 total):
+
 ```html
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@400;700&display=swap"
+  rel="stylesheet"
+/>
 ```
 
 **Fluid type scale (clamp-based):**
+
 ```
 Display:    clamp(2.5rem, 6vw, 4.5rem)   — Playfair 900
 H1:         clamp(2rem, 5vw, 3rem)        — Playfair 700
@@ -591,133 +623,140 @@ Badge/UI:   0.75rem, uppercase, tracked  — Lato 700
 
 @theme {
   /* FONTS */
-  --font-display: 'Playfair Display', 'Georgia', serif;
-  --font-body:    'Lato', system-ui, -apple-system, sans-serif;
-  --font-mono:    ui-monospace, 'Courier New', monospace;
+  --font-display: "Playfair Display", "Georgia", serif;
+  --font-body: "Lato", system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, "Courier New", monospace;
 
   /* COLORS — Brand Core */
-  --color-brown:          #8B4513;
-  --color-brown-dark:     #5c2d0e;
-  --color-brown-mid:      #654321;
-  --color-orange:         #ff6b35;
-  --color-orange-hover:   #e85d29;
-  --color-chocolate:      #D2691E;
+  --color-brown: #8b4513;
+  --color-brown-dark: #5c2d0e;
+  --color-brown-mid: #654321;
+  --color-orange: #ff6b35;
+  --color-orange-hover: #e85d29;
+  --color-chocolate: #d2691e;
 
   /* COLORS — Surfaces */
-  --color-cream:          #f8f6f0;
-  --color-cream-dark:     #ede9df;
-  --color-cream-warm:     #f4e4bc;
+  --color-cream: #f8f6f0;
+  --color-cream-dark: #ede9df;
+  --color-cream-warm: #f4e4bc;
 
   /* COLORS — Text */
-  --color-text:           #2d1a0e;
-  --color-text-muted:     #6b5a4e;
-  --color-text-inverse:   #ffffff;
+  --color-text: #2d1a0e;
+  --color-text-muted: #6b5a4e;
+  --color-text-inverse: #ffffff;
 
   /* COLORS — Semantic */
-  --color-success:        #2d7d46;
-  --color-success-light:  #e8f5ed;
-  --color-error:          #c0392b;
-  --color-error-light:    #fdf0ee;
-  --color-warning:        #b7791f;
-  --color-warning-light:  #fef3c7;
+  --color-success: #2d7d46;
+  --color-success-light: #e8f5ed;
+  --color-error: #c0392b;
+  --color-error-light: #fdf0ee;
+  --color-warning: #b7791f;
+  --color-warning-light: #fef3c7;
 
   /* COLORS — UI */
-  --color-border:         #d9cfc4;
-  --color-border-strong:  #b5a89a;
-  --color-focus:          #8B4513;
+  --color-border: #d9cfc4;
+  --color-border-strong: #b5a89a;
+  --color-focus: #8b4513;
 
   /* FONT SIZES */
-  --font-size-xs:      0.75rem;
-  --font-size-sm:      0.875rem;
-  --font-size-base:    1rem;
-  --font-size-lg:      1.125rem;
-  --font-size-xl:      1.375rem;
-  --font-size-2xl:     1.75rem;
-  --font-size-3xl:     2.25rem;
-  --font-size-4xl:     2.75rem;
-  --font-size-5xl:     3.5rem;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.375rem;
+  --font-size-2xl: 1.75rem;
+  --font-size-3xl: 2.25rem;
+  --font-size-4xl: 2.75rem;
+  --font-size-5xl: 3.5rem;
   --font-size-display: 4.5rem;
 
   /* LINE HEIGHTS */
-  --line-height-tight:   1.25;
-  --line-height-snug:    1.4;
-  --line-height-base:    1.7;
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.4;
+  --line-height-base: 1.7;
   --line-height-relaxed: 1.8;
 
   /* LETTER SPACING */
-  --letter-spacing-tight:  -0.02em;
-  --letter-spacing-normal:  0em;
-  --letter-spacing-wide:    0.04em;
-  --letter-spacing-wider:   0.08em;
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0em;
+  --letter-spacing-wide: 0.04em;
+  --letter-spacing-wider: 0.08em;
 
   /* SPACING (4px grid) */
-  --spacing-0:   0;
-  --spacing-1:   0.25rem;
-  --spacing-2:   0.5rem;
-  --spacing-3:   0.75rem;
-  --spacing-4:   1rem;
-  --spacing-5:   1.25rem;
-  --spacing-6:   1.5rem;
-  --spacing-8:   2rem;
-  --spacing-10:  2.5rem;
-  --spacing-12:  3rem;
-  --spacing-16:  4rem;
-  --spacing-20:  5rem;
-  --spacing-24:  6rem;
-  --spacing-32:  8rem;
+  --spacing-0: 0;
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+  --spacing-32: 8rem;
 
   /* BORDER RADIUS */
-  --radius-sm:   4px;
-  --radius-md:   8px;
-  --radius-lg:   12px;
-  --radius-xl:   16px;
-  --radius-2xl:  24px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
   --radius-full: 9999px;
 
   /* SHADOWS — warm-tinted (not gray) */
-  --shadow-sm:   0 1px 3px rgba(45, 26, 14, 0.08);
-  --shadow-md:   0 4px 12px rgba(45, 26, 14, 0.10);
-  --shadow-lg:   0 8px 24px rgba(45, 26, 14, 0.12);
-  --shadow-xl:   0 16px 48px rgba(45, 26, 14, 0.15);
+  --shadow-sm: 0 1px 3px rgba(45, 26, 14, 0.08);
+  --shadow-md: 0 4px 12px rgba(45, 26, 14, 0.1);
+  --shadow-lg: 0 8px 24px rgba(45, 26, 14, 0.12);
+  --shadow-xl: 0 16px 48px rgba(45, 26, 14, 0.15);
 
   /* TRANSITIONS */
-  --duration-quick:    150ms;
-  --duration-base:     250ms;
+  --duration-quick: 150ms;
+  --duration-base: 250ms;
   --duration-moderate: 350ms;
-  --duration-slow:     500ms;
-  --ease-out:   cubic-bezier(0.0, 0.0, 0.2, 1);
-  --ease-in:    cubic-bezier(0.4, 0.0, 1.0, 1);
-  --ease-inout: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --duration-slow: 500ms;
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-inout: cubic-bezier(0.4, 0, 0.2, 1);
 
   /* LAYOUT */
-  --container-sm:  42rem;
-  --container-md:  48rem;
-  --container-lg:  72rem;
-  --container-xl:  80rem;
+  --container-sm: 42rem;
+  --container-md: 48rem;
+  --container-lg: 72rem;
+  --container-xl: 80rem;
 
   /* Z-INDEX */
-  --z-base:    0;
-  --z-raised:  10;
-  --z-sticky:  100;
-  --z-drawer:  200;
-  --z-dialog:  300;
-  --z-toast:   400;
+  --z-base: 0;
+  --z-raised: 10;
+  --z-sticky: 100;
+  --z-drawer: 200;
+  --z-dialog: 300;
+  --z-toast: 400;
 
   /* GRADIENTS */
-  --gradient-product: linear-gradient(135deg, #f4e4bc 0%, #d4a574 60%, #D2691E 100%);
-  --gradient-hero:    linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+  --gradient-product: linear-gradient(
+    135deg,
+    #f4e4bc 0%,
+    #d4a574 60%,
+    #d2691e 100%
+  );
+  --gradient-hero: linear-gradient(135deg, #8b4513 0%, #d2691e 100%);
 }
 
 /* Component-level custom properties */
 :root {
   --header-height: 64px;
-  --drawer-width:  400px;
-  --touch-target:  48px;
+  --drawer-width: 400px;
+  --touch-target: 48px;
 }
 
 /* Motion accessibility */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
@@ -729,6 +768,7 @@ Badge/UI:   0.75rem, uppercase, tracked  — Lato 700
 ### 4d. Component Design Language
 
 **Buttons:**
+
 ```
 Primary (CTA):     bg orange, text white, pill, 14px/28px padding, Lato 700
                    hover: bg orange-hover, translateY(-1px), shadow-md
@@ -739,11 +779,13 @@ Destructive:       text error, icon-only preferred, hover bg error-light
 ```
 
 **Product Cards:**
+
 - Top border 3px orange on hover
 - Warm shadow: `0 4px 20px rgba(139, 69, 19, 0.12)` (not gray)
 - Dietary badges: top-left overlay on image, pill shape, green/warm scheme
 
 **Form Inputs:**
+
 - `border-radius: 8px` (not pill — pill on inputs looks like search bars)
 - Focus: `border-color brown, outline 3px rgba(139,69,19,0.2)`
 - Error: `border-color error, bg error-light`
@@ -771,14 +813,19 @@ FAQ accordion:          grid-template-rows 0fr→1fr, 300ms ease-out
 ```
 
 `<details>` animated height — use the grid trick:
+
 ```css
 details > div {
   display: grid;
   grid-template-rows: 0fr;
   transition: grid-template-rows 300ms ease-out;
 }
-details[open] > div { grid-template-rows: 1fr; }
-details > div > * { overflow: hidden; }
+details[open] > div {
+  grid-template-rows: 1fr;
+}
+details > div > * {
+  overflow: hidden;
+}
 ```
 
 ---
@@ -786,6 +833,7 @@ details > div > * { overflow: hidden; }
 ### 4g. Product Photography
 
 **Priority shot list:**
+
 1. Nuts in rustic wooden bowl, overhead, warm window light, slight steam
 2. All three bag sizes together (size comparison)
 3. Booth at Holt Farmer's Market (candid setup)
@@ -794,6 +842,7 @@ details > div > * { overflow: hidden; }
 **Technical:** iPhone 14+ Portrait mode, 1x lens, north-facing window or overcast. No lightbox for lifestyle shots. Add warmth (+10–15) in post.
 
 **CSS integration — build cards with `aspect-ratio` containers from day one:**
+
 ```html
 <div class="aspect-[4/3] overflow-hidden rounded-t-xl bg-cream-warm">
   <!-- gradient placeholder OR <img> — no layout shift when photos arrive -->
@@ -812,6 +861,7 @@ details > div > * { overflow: hidden; }
 - vs. Etsy: maximum-effort-rustic. Nut Barn = confident brand that's comfortable at farmer's markets.
 
 Three visual rules:
+
 1. Every element earns its place — if it doesn't help someone buy or trust, cut it
 2. The food is the hero — give it prominence above decoration
 3. Mobile is the primary canvas — design mobile-first, always
@@ -844,10 +894,11 @@ routeRules: {
 **Priority: Must-fix**
 
 Initialize with:
+
 ```ts
 export default defineNuxtConfig({
   future: { compatibilityVersion: 4 },
-})
+});
 ```
 
 Pages, components, composables, layouts move under `app/`. Stores go in `app/stores/`.
@@ -859,13 +910,13 @@ Pages, components, composables, layouts move under `app/`. Stores go in `app/sto
 **Priority: Must-fix**
 
 ```ts
-import tailwindcss from '@tailwindcss/vite'
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
-  modules: ['@pinia/nuxt'],
+  modules: ["@pinia/nuxt"],
   vite: { plugins: [tailwindcss()] },
-  css: ['~/assets/css/main.css'],
-})
+  css: ["~/assets/css/main.css"],
+});
 ```
 
 Do NOT add it to `modules:` — silent startup failure.
@@ -886,7 +937,7 @@ Phase 2 Week 4 says "email dispatch via Nodemailer." Replace with Resend through
 
 ```ts
 // pages/shop.vue
-const { data: products } = await useAsyncData('products', () => getProducts())
+const { data: products } = await useAsyncData("products", () => getProducts());
 ```
 
 Bare `$fetch` in `<script setup>` runs on both server and client, doubling requests.
@@ -900,33 +951,33 @@ Bare `$fetch` in `<script setup>` runs on both server and client, doubling reque
 ```ts
 // shared/types/cart.ts
 export interface CartItem {
-  id: string
-  name: string
-  priceInCents: number   // avoid float arithmetic errors
-  quantity: number
+  id: string;
+  name: string;
+  priceInCents: number; // avoid float arithmetic errors
+  quantity: number;
 }
 
 // shared/types/product.ts
 export interface Product {
-  id: string
-  name: string
-  priceInCents: number
-  weightOz: number
-  shortDescription: string
-  dietaryTags: ('vegan' | 'gluten-free')[]
-  image?: string
+  id: string;
+  name: string;
+  priceInCents: number;
+  weightOz: number;
+  shortDescription: string;
+  dietaryTags: ("vegan" | "gluten-free")[];
+  image?: string;
 }
 
 // shared/types/order.ts
 export interface OrderPayload {
-  name: string
-  email: string
-  phone: string
-  fulfillment: 'pickup' | 'delivery'
-  deliveryAddress?: string
-  payment: 'call' | 'on-pickup'
-  items: CartItem[]
-  notes?: string
+  name: string;
+  email: string;
+  phone: string;
+  fulfillment: "pickup" | "delivery";
+  deliveryAddress?: string;
+  payment: "call" | "on-pickup";
+  items: CartItem[];
+  notes?: string;
 }
 ```
 
@@ -980,23 +1031,30 @@ Without `strict: true`, TypeScript is largely decorative.
 
 ```ts
 // stores/cart.ts
-export const useCartStore = defineStore('cart', () => {
-  const items = ref<CartItem[]>([])
+export const useCartStore = defineStore("cart", () => {
+  const items = ref<CartItem[]>([]);
 
   if (import.meta.client) {
-    const stored = localStorage.getItem('nutbarn-cart')
-    if (stored) items.value = JSON.parse(stored)
-    watch(items, (val) => {
-      localStorage.setItem('nutbarn-cart', JSON.stringify(val))
-    }, { deep: true })
+    const stored = localStorage.getItem("nutbarn-cart");
+    if (stored) items.value = JSON.parse(stored);
+    watch(
+      items,
+      (val) => {
+        localStorage.setItem("nutbarn-cart", JSON.stringify(val));
+      },
+      { deep: true },
+    );
   }
 
   const total = computed(() =>
-    items.value.reduce((sum, item) => sum + item.priceInCents * item.quantity, 0)
-  )
+    items.value.reduce(
+      (sum, item) => sum + item.priceInCents * item.quantity,
+      0,
+    ),
+  );
 
-  return { items, total }
-})
+  return { items, total };
+});
 ```
 
 Cart should only be cleared after confirmed `200 OK` from `POST /api/orders` — not optimistically.
@@ -1011,11 +1069,19 @@ Popover API has ~90% support as of early 2026. Safari 16 and older iOS are the m
 
 ```css
 .toast {
-  position: fixed; bottom: 1rem; right: 1rem;
-  opacity: 0; transform: translateY(1rem);
-  transition: opacity 0.3s, transform 0.3s;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  opacity: 0;
+  transform: translateY(1rem);
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
 }
-.toast.is-visible { opacity: 1; transform: translateY(0); }
+.toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 ```
 
 If Popover API is used, pair with a `role="status"` live region for screen reader announcements.
@@ -1030,8 +1096,8 @@ No testing strategy exists in the plan. Add:
 
 ```ts
 // vitest.config.ts
-import { defineVitestConfig } from '@nuxt/test-utils/config'
-export default defineVitestConfig({ test: { environment: 'nuxt' } })
+import { defineVitestConfig } from "@nuxt/test-utils/config";
+export default defineVitestConfig({ test: { environment: "nuxt" } });
 ```
 
 Critical unit tests: cart store operations, WordPress mock fallback, order validation, price recomputation.
@@ -1104,4 +1170,4 @@ jobs:
 
 ---
 
-*All five reviews conducted March 2026. Agents reviewed `docs/initial/NUT-BARN-MASTER-PLAN.md` v1.2, `src/index.html`, `src/css/styles.css`, and `src/js/main.js`.*
+_All five reviews conducted March 2026. Agents reviewed `docs/initial/NUT-BARN-MASTER-PLAN.md` v1.2, `src/index.html`, `src/css/styles.css`, and `src/js/main.js`._

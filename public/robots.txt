@@ -3,4 +3,4 @@ Allow: /
 
 Disallow: /api/
 
-Sitemap: https://thenutbarn.com/sitemap.xml
+Sitemap: https://thenutbarn.net/sitemap.xml
