@@ -39,11 +39,13 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    "/": { swr: 300 },
-    "/shop": { swr: 60 },
-    "/find-us": { swr: 3600 },
-    "/blog": { swr: 3600 },
-    "/blog/**": { swr: 3600 },
+    ...(process.env.NODE_ENV === "production" && {
+      "/": { swr: 300 },
+      "/shop": { swr: 60 },
+      "/find-us": { swr: 3600 },
+      "/blog": { swr: 3600 },
+      "/blog/**": { swr: 3600 },
+    }),
     "/contact": { prerender: true },
     "/faq": { prerender: true },
     "/our-story": { prerender: true },
