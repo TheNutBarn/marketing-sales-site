@@ -72,7 +72,7 @@ useHead({
     </section>
 
     <!-- Values -->
-    <section class="px-4 py-12 reveal" style="background-color:var(--color-cream-dark);">
+    <section class="px-4 py-12" style="background-color:var(--color-cream-dark);">
       <div class="mx-auto text-center" style="max-width:var(--container-xl);">
         <p class="eyebrow">What Drives Us</p>
         <h2 class="mb-2" style="color:var(--color-denim);">Why We Do It</h2>
