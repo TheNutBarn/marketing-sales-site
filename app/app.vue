@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useScrollReveal } from '~/composables/useScrollReveal'
-useScrollReveal()
+/*import { useScrollReveal } from '~/composables/useScrollReveal'
+useScrollReveal()*/
 </script>
 
 <template>
