@@ -151,7 +151,7 @@ const giftBasket = PRODUCTS.find((p) => p.id === "gift-basket");
 
   <!-- ─── Products ──────────────────────────────────── -->
   <section
-    class="px-4 py-16 reveal"
+    class="px-4 py-16"
     style="background-color: var(--color-cream-light)"
     aria-labelledby="products-heading"
   >
@@ -238,7 +238,7 @@ const giftBasket = PRODUCTS.find((p) => p.id === "gift-basket");
 
   <!-- ─── Gift Basket callout ───────────────────────── -->
   <section
-    class="px-4 py-16 reveal"
+    class="px-4 py-16"
     style="background-color: var(--color-cream-dark)"
     aria-labelledby="gift-heading"
   >
@@ -294,7 +294,7 @@ const giftBasket = PRODUCTS.find((p) => p.id === "gift-basket");
 
   <!-- ─── Our Story teaser ──────────────────────────── -->
   <section
-    class="px-4 py-16 text-center reveal"
+    class="px-4 py-16 text-center"
     aria-labelledby="story-teaser-heading"
   >
     <div class="mx-auto" style="max-width: var(--container-md)">
